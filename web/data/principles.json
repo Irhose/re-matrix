@@ -1,0 +1,286 @@
+{
+  "principles": [
+    {
+      "id": "50fea115-5d9c-42b2-8a1f-7f0e236dae90",
+      "content": "Cancer arises from Darwinian selection among somatic cells acquiring heritable changes that enhance survival or reproduction.",
+      "domain": "immunology",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "somatic cells",
+        "cancer",
+        "Darwinian selection",
+        "heritable changes"
+      ],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_1"
+    },
+    {
+      "id": "ccc7421f-bced-449b-8f9d-4ffb1c430baf",
+      "content": "Cancer arises from the corruption of DNA, leading to alterations in cellular behavior and function.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "DNA",
+        "cell division",
+        "cell death",
+        "signals",
+        "chromosomal rearrangements",
+        "gene amplification",
+        "point mutations"
+      ],
+      "depends_on": [
+        "Cancer represents normal biology operating without appropriate regulation"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_2"
+    },
+    {
+      "id": "f069795e-07a1-449c-9600-a400d0849461",
+      "content": "Tumor development and metastasis are interconnected processes driven by disruptions in cellular regulation, often stemming from single genetic alterations that impact multiple cancer behaviors.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "TP53",
+        "KRAS",
+        "DNA repair",
+        "apoptosis",
+        "genomic instability",
+        "mutation accumulation",
+        "tumor evolution",
+        "cellular proliferation",
+        "angiogenesis",
+        "inflammatory signaling",
+        "immune suppression"
+      ],
+      "depends_on": [
+        "T-cell activation requires TCR engagement + costimulation"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "c91ae3a6-6130-43cc-86eb-940922212328",
+      "content": "Tumors are subject to selective pressures that drive the elimination of sensitive cells and expansion of resistant populations.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "cancer cells",
+        "immune surveillance",
+        "chemotherapy",
+        "radiation",
+        "targeted therapy"
+      ],
+      "depends_on": [
+        "Cancer exists as a population of cells with varying sensitivities.",
+        "External factors can influence cell survival and proliferation."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_4"
+    },
+    {
+      "id": "64a9c1b9-56c5-47ef-b4d6-a7df5333f845",
+      "content": "Genomic instability accelerates the rate of genetic change within cancer cells, enabling adaptation and escape from therapy but also risking impaired survival.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "TP53",
+        "BRCA1",
+        "BRCA2",
+        "mismatch repair"
+      ],
+      "depends_on": [
+        "Cancers develop metabolic dependencies that create therapeutic vulnerabilities."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "b2e2008c-c46a-4575-95f0-5d2d79d32b5a",
+      "content": "Cancer cell survival and malignant behavior are critically dependent on specific driver mutations, creating a vulnerability that can be exploited therapeutically.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "cancer cells",
+        "driver mutations",
+        "oncogene addiction",
+        "targeted therapies"
+      ],
+      "depends_on": [
+        "Cancer is the interaction between genetic alteration + cell of origin + tissue environment"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "4a2d4770-2e73-4dcb-9420-ee07ebac1bc3",
+      "content": "Cancer arises from somatic cells acquiring heritable alterations that confer selective advantages within a tissue ecosystem, leading to uncontrolled growth and other hallmarks.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "somatic cell",
+        "tissue ecosystem",
+        "heritable alteration"
+      ],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_7"
+    },
+    {
+      "id": "9468a6b8-b744-4db1-aa37-a9740c9b9a84",
+      "content": "The immune system actively monitors the body for emerging abnormal cells and eliminates precancerous or early cancer cells before they progress to clinically relevant disease.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "immune system",
+        "abnormal cells",
+        "precancerous cells",
+        "early cancer cells",
+        "apoptosis"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_1"
+    },
+    {
+      "id": "d7886004-c2e3-4580-a2fa-bce43e7b4c1d",
+      "content": "Cells experiencing oncogenic or genotoxic stress upregulate surface molecules that act as 'altered self' signals, triggering innate immune responses.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "cancer cells",
+        "oncogenic stress",
+        "genotoxic stress",
+        "surface molecules",
+        "innate immune responses"
+      ],
+      "depends_on": [
+        "Cells can undergo apoptosis or senescence.",
+        "Immune cells sample the environment."
+      ],
+      "source_citation": "the immune system and cancer:page_2"
+    },
+    {
+      "id": "bf93f819-c580-4fbb-8d4f-e9529b462d51",
+      "content": "Dendritic cells process antigens from dying tumor cells and present peptide fragments on MHC molecules to prime na\u00efve CD8+ and CD4+ T cells in lymph nodes.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "dendritic cells",
+        "MHC molecules",
+        "CD8+ T cell",
+        "CD4+ T cell",
+        "lymph nodes",
+        "antigens"
+      ],
+      "depends_on": [
+        "T cells require antigen presentation for activation"
+      ],
+      "source_citation": "the immune system and cancer:page_3"
+    },
+    {
+      "id": "57e0bfe2-e576-4cd5-aa1c-37d190229c2b",
+      "content": "The immune system can maintain a dynamic equilibrium with small tumor cell clusters by balancing tumor cell division and death, preventing macroscopic growth.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "CD8+ T cell",
+        "CD4+ T cell",
+        "NK cell",
+        "macrophages",
+        "interferon-gamma",
+        "tumor cells"
+      ],
+      "depends_on": [
+        "T-cell activation requires TCR engagement + costimulation",
+        "Cytotoxic mediators induce apoptosis in target cells"
+      ],
+      "source_citation": "the immune system and cancer:page_4"
+    },
+    {
+      "id": "0eae62df-4561-4f4a-8e44-5d065bb9bc2b",
+      "content": "Tumors secrete immunosuppressive cytokines, such as TGF-beta and IL-10, which inhibit effector T cells and NK cells while promoting the expansion of regulatory T cells (Tregs) and myeloid-derived suppressor cells (MDSCs).",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "tumor",
+        "TGF-beta",
+        "IL-10",
+        "effector T cell",
+        "NK cell",
+        "regulatory T cells (Tregs)",
+        "myeloid-derived suppressor cells (MDSCs)"
+      ],
+      "depends_on": [
+        "The immune system acts at multiple levels to prevent, target, and control cancer."
+      ],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "d4395f8c-d01c-4aa2-a8de-3333750a5f38",
+      "content": "The immune system possesses inherent mechanisms to recognize and eliminate cancerous cells.",
+      "domain": "immunology",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "immune system",
+        "cancerous cells"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_6"
+    }
+  ],
+  "depends_on": {
+    "ccc7421f-bced-449b-8f9d-4ffb1c430baf": [
+      "4a2d4770-2e73-4dcb-9420-ee07ebac1bc3"
+    ],
+    "f069795e-07a1-449c-9600-a400d0849461": [
+      "d7886004-c2e3-4580-a2fa-bce43e7b4c1d"
+    ],
+    "c91ae3a6-6130-43cc-86eb-940922212328": [
+      "50fea115-5d9c-42b2-8a1f-7f0e236dae90",
+      "57e0bfe2-e576-4cd5-aa1c-37d190229c2b"
+    ],
+    "64a9c1b9-56c5-47ef-b4d6-a7df5333f845": [
+      "b2e2008c-c46a-4575-95f0-5d2d79d32b5a"
+    ],
+    "b2e2008c-c46a-4575-95f0-5d2d79d32b5a": [
+      "4a2d4770-2e73-4dcb-9420-ee07ebac1bc3"
+    ],
+    "d7886004-c2e3-4580-a2fa-bce43e7b4c1d": [
+      "64a9c1b9-56c5-47ef-b4d6-a7df5333f845",
+      "9468a6b8-b744-4db1-aa37-a9740c9b9a84"
+    ],
+    "bf93f819-c580-4fbb-8d4f-e9529b462d51": [
+      "d7886004-c2e3-4580-a2fa-bce43e7b4c1d"
+    ],
+    "57e0bfe2-e576-4cd5-aa1c-37d190229c2b": [
+      "d7886004-c2e3-4580-a2fa-bce43e7b4c1d",
+      "b2e2008c-c46a-4575-95f0-5d2d79d32b5a"
+    ],
+    "0eae62df-4561-4f4a-8e44-5d065bb9bc2b": [
+      "d4395f8c-d01c-4aa2-a8de-3333750a5f38"
+    ]
+  },
+  "dependents": {
+    "4a2d4770-2e73-4dcb-9420-ee07ebac1bc3": [
+      "ccc7421f-bced-449b-8f9d-4ffb1c430baf",
+      "b2e2008c-c46a-4575-95f0-5d2d79d32b5a"
+    ],
+    "d7886004-c2e3-4580-a2fa-bce43e7b4c1d": [
+      "f069795e-07a1-449c-9600-a400d0849461",
+      "bf93f819-c580-4fbb-8d4f-e9529b462d51",
+      "57e0bfe2-e576-4cd5-aa1c-37d190229c2b"
+    ],
+    "50fea115-5d9c-42b2-8a1f-7f0e236dae90": [
+      "c91ae3a6-6130-43cc-86eb-940922212328"
+    ],
+    "57e0bfe2-e576-4cd5-aa1c-37d190229c2b": [
+      "c91ae3a6-6130-43cc-86eb-940922212328"
+    ],
+    "b2e2008c-c46a-4575-95f0-5d2d79d32b5a": [
+      "64a9c1b9-56c5-47ef-b4d6-a7df5333f845",
+      "57e0bfe2-e576-4cd5-aa1c-37d190229c2b"
+    ],
+    "64a9c1b9-56c5-47ef-b4d6-a7df5333f845": [
+      "d7886004-c2e3-4580-a2fa-bce43e7b4c1d"
+    ],
+    "9468a6b8-b744-4db1-aa37-a9740c9b9a84": [
+      "d7886004-c2e3-4580-a2fa-bce43e7b4c1d"
+    ],
+    "d4395f8c-d01c-4aa2-a8de-3333750a5f38": [
+      "0eae62df-4561-4f4a-8e44-5d065bb9bc2b"
+    ]
+  }
+}
