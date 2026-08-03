@@ -139,6 +139,7 @@ async function loadCorpus() {
   if (CORPUS) return CORPUS;
   const resp = await fetch("data/principles.json");
   CORPUS = await resp.json();
+  CORPUS.idx = indexById();
   return CORPUS;
 }
 
