@@ -8,7 +8,11 @@ const PROXY_URL = "https://re-matrix-proxy.irhoseapori.workers.dev";
 const APP_PASSWORD_HINT = "Contrari-matrix";
 const SESSION_KEY = "rematrix_unlocked";
 const PASS_KEY = "rematrix_pass";
-const DATA_VERSION = "3"; // bump to force browsers off a cached corpus
+const DATA_VERSION = "4"; // bump to force browsers off a cached corpus
+
+// Per-level caps on principles sent to the reasoning model (free-tier TPM guard).
+const PROMPT_LEVEL_CAPS = { L0_axiom: 10, L1_mechanistic_pathway: 18, L2_context_modifier: 10, L3_known_exception: 4 };
+const SEED_CANDIDATE_CAP = 40; // principles offered to the seed-selection model
 const LEVEL_LABELS = {
   "L0_axiom": "L0 - Axioms (Foundational)",
   "L1_mechanistic_pathway": "L1 - Mechanistic Pathways",
@@ -226,10 +230,17 @@ async function stageUnderstanding(query, statusEl) {
 
 async function stageRetrieval(understanding, statusEl) {
   setStep(statusEl, "running");
-  const list = CORPUS.principles.map(p =>
-    `ID: ${p.id}\nContent: ${p.content}\nEntities: ${p.entities.join(", ")}\nLevel: ${p.hierarchy_level}`).join("\n\n");
+  // Pre-filter to the top candidates by entity overlap, then compact each
+  // principle to a short line. This keeps the seed-selection prompt small
+  // (free-tier TPM guard) without asking the model to read all 142.
+  const candidates = CORPUS.principles
+    .slice()
+    .sort((a, b) => entityOverlap(understanding.entities, b) - entityOverlap(understanding.entities, a))
+    .slice(0, SEED_CANDIDATE_CAP);
+  const list = candidates.map(p =>
+    `ID: ${p.id}\nContent: ${p.content.slice(0, 60)}${p.content.length > 60 ? "..." : ""}\nEntities: ${p.entities.join(", ")}\nLevel: ${p.hierarchy_level}`).join("\n\n");
   const data = await groqChat(getSettings().fast, PROMPTS.seed_selection,
-    `QUERY: ${understanding.causal_question}\n\nContext: ${JSON.stringify(understanding.context)}\nEntities: ${JSON.stringify(understanding.entities)}\n\nPRINCIPLES:\n${list}`, 0.1);
+    `QUERY: ${understanding.causal_question}\n\nContext: ${JSON.stringify(understanding.context)}\nEntities: ${JSON.stringify(understanding.entities)}\n\nPRINCIPLES (top ${SEED_CANDIDATE_CAP} candidates by entity relevance):\n${list}`, 0.1);
 
   let seedIds = data.seed_ids || [];
   seedIds = seedIds.filter(id => CORPUS.idx[id]);
@@ -240,14 +251,18 @@ async function stageRetrieval(understanding, statusEl) {
   return retrieved;
 }
 
-function formatPrinciplesForPrompt(retrieved) {
+function formatPrinciplesForPrompt(retrieved, understanding) {
   const order = ["L0_axiom", "L1_mechanistic_pathway", "L2_context_modifier", "L3_known_exception"];
+  const entities = (understanding && understanding.entities) || {};
   const lines = [];
   for (const lvl of order) {
     const ps = retrieved[lvl] || [];
     if (!ps.length) continue;
-    lines.push(`=== ${LEVEL_LABELS[lvl]} ===`);
-    for (const p of ps) {
+    const cap = PROMPT_LEVEL_CAPS[lvl] || ps.length;
+    const picked = ps.slice().sort((a, b) =>
+      entityOverlap(entities, b) - entityOverlap(entities, a)).slice(0, cap);
+    lines.push(`=== ${LEVEL_LABELS[lvl]} (showing ${picked.length} of ${ps.length} retrieved) ===`);
+    for (const p of picked) {
       lines.push(`ID: ${p.id}`);
       lines.push(`Content: ${p.content}`);
       lines.push(`Entities: ${p.entities.join(", ")}`);
@@ -266,7 +281,7 @@ Context: ${JSON.stringify(understanding.context)}
 Entities: ${JSON.stringify(understanding.entities)}
 
 PRINCIPLES:
-${formatPrinciplesForPrompt(retrieved)}`;
+${formatPrinciplesForPrompt(retrieved, understanding)}`;
   const data = await groqChat(getSettings().reasoning, PROMPTS.thought_experiment, user, 0.2);
   setStep(statusEl, "done");
   return data;
@@ -289,7 +304,7 @@ Causal Chain:
 ${chain}
 
 PRINCIPLES (focus on L2 context modifiers and L3 known exceptions):
-${formatPrinciplesForPrompt(retrieved)}`;
+${formatPrinciplesForPrompt(retrieved, understanding)}`;
   const data = await groqChat(getSettings().reasoning, PROMPTS.edge_cases, user, 0.5);
   setStep(statusEl, "done");
   return data.edge_cases || [];
