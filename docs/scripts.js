@@ -21,6 +21,7 @@ const LEVEL_LABELS = {
 };
 
 let CORPUS = null;
+let lastReport = null;
 
 const PROMPTS = {
   understanding: `You are an expert cancer immunologist analyzing a researcher's query.
@@ -514,7 +515,122 @@ function renderFollowups(followups) {
   return html.join("");
 }
 
+function shortLevel(lvl) {
+  return String(lvl || "").split("_")[0].toUpperCase();
+}
+
+function mdEscape(s) {
+  if (s == null) return "";
+  return String(s).replace(/\|/g, "\\|").replace(/\r?\n/g, " ").trim();
+}
+
+function buildReportMarkdown(report) {
+  const md = [];
+  const typeLabels = {
+    mechanistic: "Mechanistic",
+    therapeutic_hypothesis: "Therapeutic hypothesis",
+    edge_case_exploration: "Edge-case exploration",
+    comparative: "Comparative"
+  };
+  const now = new Date().toISOString().replace("T", " ").slice(0, 19) + " UTC";
+
+  md.push("# Re-Matrix Reasoning Report");
+  md.push("");
+  md.push(`**Generated:** ${now}`);
+  md.push("");
+  md.push(`**Query:** ${mdEscape(report.query)}`);
+  md.push("");
+
+  md.push("## 1. Query Restatement");
+  md.push("");
+  md.push(mdEscape(report.query));
+  md.push("");
+  md.push(`**Classified as:** ${typeLabels[report.queryType] || report.queryType}`);
+  md.push("");
+  md.push(`**Causal question:** ${mdEscape(report.understanding.causal_question || "")}`);
+  md.push("");
+
+  md.push("## 2. Principles Invoked");
+  const order = ["L0_axiom", "L1_mechanistic_pathway", "L2_context_modifier", "L3_known_exception"];
+  for (const lvl of order) {
+    const ps = (report.retrieved && report.retrieved[lvl]) || [];
+    if (!ps.length) continue;
+    md.push("");
+    md.push(`### ${LEVEL_LABELS[lvl]}`);
+    md.push("");
+    for (const p of ps) {
+      md.push(`- **${mdEscape(p.content)}** (${shortLevel(p.hierarchy_level)})`);
+      md.push(`  - Entities: ${mdEscape(p.entities.join(", "))}`);
+      md.push(`  - Source: ${mdEscape(p.source_citation)}`);
+    }
+  }
+  md.push("");
+
+  const te = report.thoughtExp || {};
+  md.push("## 3. Thought Experiment");
+  md.push("");
+  md.push(`- **Initial conditions:** ${mdEscape(te.initial_conditions)}`);
+  md.push(`- **Intervention:** ${mdEscape(te.intervention)}`);
+  md.push(`- **Held constant:** ${mdEscape((te.held_constant || []).join(", "))}`);
+  md.push("");
+  md.push("### Causal chain");
+  md.push("");
+  for (const s of te.causal_chain || []) {
+    const p = CORPUS.idx[s.principle_id];
+    const lvl = shortLevel((p && p.hierarchy_level) || "");
+    const cite = s.citation || (p && p.source_citation) || "";
+    md.push(`1. **${mdEscape(s.principle_content)}** (${lvl})`);
+    md.push(`   - Mechanistic consequence: ${mdEscape(s.mechanistic_consequence)}`);
+    md.push(`   - Confidence: ${mdEscape(s.confidence)}`);
+    if (cite) md.push(`   - Citation: ${mdEscape(cite)}`);
+  }
+  md.push("");
+  md.push(`**PREDICTED OUTCOME:** ${mdEscape(te.predicted_outcome)}`);
+  md.push("");
+  md.push(`**Outcome confidence:** ${mdEscape(te.outcome_confidence)}`);
+  if (te.confidence_justification) md.push(`\n**Confidence justification:** ${mdEscape(te.confidence_justification)}`);
+  md.push("");
+
+  const edgeCases = report.edgeCases || [];
+  md.push("## 4. Edge Cases");
+  md.push("");
+  if (!edgeCases.length) {
+    md.push("None identified across the retrieved conditions.");
+  } else {
+    edgeCases.forEach((e, i) => {
+      md.push(`${i + 1}. **${mdEscape((e.severity || "qualifies").toUpperCase())}** ${mdEscape(e.condition)}`);
+      md.push(`   - Why it changes: ${mdEscape(e.mechanism_of_deviation)}`);
+      const ecite = [e.hierarchy_level, e.citation].filter(Boolean).join(" · ");
+      if (ecite) md.push(`   - ${mdEscape(ecite)}`);
+    });
+  }
+  md.push("");
+
+  const assumptions = report.assumptions || [];
+  md.push("## 5. Flagged Assumptions / Underspecified Variables");
+  md.push("");
+  if (assumptions.length) {
+    assumptions.forEach((a) => md.push(`- ${mdEscape(a)}`));
+  } else {
+    md.push("None flagged.");
+  }
+  md.push("");
+
+  const followups = report.followups || [];
+  md.push("## 6. Suggested Follow-Up Questions / Experiments");
+  md.push("");
+  if (followups.length) {
+    followups.forEach((f, i) => md.push(`${i + 1}. ${mdEscape(f)}`));
+  } else {
+    md.push("None suggested.");
+  }
+  md.push("");
+
+  return md.join("\n");
+}
+
 function renderReport(report) {
+  lastReport = report;
   const body = document.getElementById("report-body");
   const typeLabels = {
     mechanistic: "Mechanistic",
@@ -624,14 +740,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  // Copy report
-  document.getElementById("copy-report").addEventListener("click", async () => {
-    const body = document.getElementById("report-body").innerText;
+  // Copy report as a formatted Markdown document
+  const copyBtn = document.getElementById("copy-report");
+  copyBtn.addEventListener("click", async () => {
+    if (!lastReport) return;
+    const doc = buildReportMarkdown(lastReport);
     try {
-      await navigator.clipboard.writeText(body);
-      document.getElementById("copy-report").textContent = "Copied";
-      setTimeout(() => { document.getElementById("copy-report").textContent = "Copy"; }, 1500);
+      await navigator.clipboard.writeText(doc);
+      copyBtn.textContent = "Copied";
+      setTimeout(() => { copyBtn.textContent = "Copy"; }, 1500);
     } catch (e) { /* ignore */ }
+  });
+
+  // Download report as a .md file
+  document.getElementById("download-report").addEventListener("click", () => {
+    if (!lastReport) return;
+    const doc = buildReportMarkdown(lastReport);
+    const slug = (lastReport.query || "report").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
+    const blob = new Blob([doc], { type: "text/markdown;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `re-matrix-report-${slug || "report"}.md`;
+    a.click();
+    URL.revokeObjectURL(a.href);
   });
 
   // Load corpus for header stats
