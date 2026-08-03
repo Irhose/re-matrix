@@ -519,13 +519,7 @@ function shortLevel(lvl) {
   return String(lvl || "").split("_")[0].toUpperCase();
 }
 
-function mdEscape(s) {
-  if (s == null) return "";
-  return String(s).replace(/\|/g, "\\|").replace(/\r?\n/g, " ").trim();
-}
-
-function buildReportMarkdown(report) {
-  const md = [];
+function buildReportHtml(report) {
   const typeLabels = {
     mechanistic: "Mechanistic",
     therapeutic_hypothesis: "Therapeutic hypothesis",
@@ -533,100 +527,210 @@ function buildReportMarkdown(report) {
     comparative: "Comparative"
   };
   const now = new Date().toISOString().replace("T", " ").slice(0, 19) + " UTC";
+  const h = [];
 
-  md.push("# Re-Matrix Reasoning Report");
-  md.push("");
-  md.push(`**Generated:** ${now}`);
-  md.push("");
-  md.push(`**Query:** ${mdEscape(report.query)}`);
-  md.push("");
+  h.push(`<h1>Re-Matrix Reasoning Report</h1>`);
+  h.push(`<p class="meta"><strong>Generated:</strong> ${esc(now)}</p>`);
+  h.push(`<p class="meta"><strong>Query:</strong> ${esc(report.query)}</p>`);
 
-  md.push("## 1. Query Restatement");
-  md.push("");
-  md.push(mdEscape(report.query));
-  md.push("");
-  md.push(`**Classified as:** ${typeLabels[report.queryType] || report.queryType}`);
-  md.push("");
-  md.push(`**Causal question:** ${mdEscape(report.understanding.causal_question || "")}`);
-  md.push("");
+  h.push(`<h2>1. Query Restatement</h2>`);
+  h.push(`<p>${esc(report.query)}</p>`);
+  h.push(`<p><strong>Classified as:</strong> ${esc(typeLabels[report.queryType] || report.queryType)}</p>`);
+  h.push(`<p><strong>Causal question:</strong> ${esc(report.understanding.causal_question || "")}</p>`);
 
-  md.push("## 2. Principles Invoked");
+  h.push(`<h2>2. Principles Invoked</h2>`);
   const order = ["L0_axiom", "L1_mechanistic_pathway", "L2_context_modifier", "L3_known_exception"];
   for (const lvl of order) {
     const ps = (report.retrieved && report.retrieved[lvl]) || [];
     if (!ps.length) continue;
-    md.push("");
-    md.push(`### ${LEVEL_LABELS[lvl]}`);
-    md.push("");
+    h.push(`<h3>${esc(LEVEL_LABELS[lvl])}</h3>`);
+    h.push(`<ul>`);
     for (const p of ps) {
-      md.push(`- **${mdEscape(p.content)}** (${shortLevel(p.hierarchy_level)})`);
-      md.push(`  - Entities: ${mdEscape(p.entities.join(", "))}`);
-      md.push(`  - Source: ${mdEscape(p.source_citation)}`);
+      h.push(`<li><strong>${esc(p.content)}</strong> (${esc(shortLevel(p.hierarchy_level))})`);
+      h.push(`<div class="sub">Entities: ${esc(p.entities.join(", "))}</div>`);
+      h.push(`<div class="sub">Source: ${esc(p.source_citation)}</div></li>`);
     }
+    h.push(`</ul>`);
   }
-  md.push("");
 
   const te = report.thoughtExp || {};
-  md.push("## 3. Thought Experiment");
-  md.push("");
-  md.push(`- **Initial conditions:** ${mdEscape(te.initial_conditions)}`);
-  md.push(`- **Intervention:** ${mdEscape(te.intervention)}`);
-  md.push(`- **Held constant:** ${mdEscape((te.held_constant || []).join(", "))}`);
-  md.push("");
-  md.push("### Causal chain");
-  md.push("");
+  h.push(`<h2>3. Thought Experiment</h2>`);
+  h.push(`<p><strong>Initial conditions:</strong> ${esc(te.initial_conditions)}</p>`);
+  h.push(`<p><strong>Intervention:</strong> ${esc(te.intervention)}</p>`);
+  h.push(`<p><strong>Held constant:</strong> ${esc((te.held_constant || []).join(", "))}</p>`);
+  h.push(`<h3>Causal chain</h3>`);
+  h.push(`<ol>`);
   for (const s of te.causal_chain || []) {
     const p = CORPUS.idx[s.principle_id];
     const lvl = shortLevel((p && p.hierarchy_level) || "");
     const cite = s.citation || (p && p.source_citation) || "";
-    md.push(`1. **${mdEscape(s.principle_content)}** (${lvl})`);
-    md.push(`   - Mechanistic consequence: ${mdEscape(s.mechanistic_consequence)}`);
-    md.push(`   - Confidence: ${mdEscape(s.confidence)}`);
-    if (cite) md.push(`   - Citation: ${mdEscape(cite)}`);
+    h.push(`<li><strong>${esc(s.principle_content)}</strong> (${esc(lvl)})`);
+    h.push(`<div class="sub">Mechanistic consequence: ${esc(s.mechanistic_consequence)}</div>`);
+    h.push(`<div class="sub">Confidence: ${esc(s.confidence)}</div>`);
+    if (cite) h.push(`<div class="sub">Citation: ${esc(cite)}</div></li>`);
+    else h.push(`</li>`);
   }
-  md.push("");
-  md.push(`**PREDICTED OUTCOME:** ${mdEscape(te.predicted_outcome)}`);
-  md.push("");
-  md.push(`**Outcome confidence:** ${mdEscape(te.outcome_confidence)}`);
-  if (te.confidence_justification) md.push(`\n**Confidence justification:** ${mdEscape(te.confidence_justification)}`);
-  md.push("");
+  h.push(`</ol>`);
+  h.push(`<p><strong>PREDICTED OUTCOME:</strong> ${esc(te.predicted_outcome)}</p>`);
+  h.push(`<p><strong>Outcome confidence:</strong> ${esc(te.outcome_confidence)}</p>`);
+  if (te.confidence_justification) h.push(`<p><strong>Confidence justification:</strong> ${esc(te.confidence_justification)}</p>`);
 
   const edgeCases = report.edgeCases || [];
-  md.push("## 4. Edge Cases");
-  md.push("");
+  h.push(`<h2>4. Edge Cases</h2>`);
   if (!edgeCases.length) {
-    md.push("None identified across the retrieved conditions.");
+    h.push(`<p>None identified across the retrieved conditions.</p>`);
   } else {
-    edgeCases.forEach((e, i) => {
-      md.push(`${i + 1}. **${mdEscape((e.severity || "qualifies").toUpperCase())}** ${mdEscape(e.condition)}`);
-      md.push(`   - Why it changes: ${mdEscape(e.mechanism_of_deviation)}`);
-      const ecite = [e.hierarchy_level, e.citation].filter(Boolean).join(" · ");
-      if (ecite) md.push(`   - ${mdEscape(ecite)}`);
+    h.push(`<ol>`);
+    edgeCases.forEach((e) => {
+      h.push(`<li><strong>${esc((e.severity || "qualifies").toUpperCase())}</strong> ${esc(e.condition)}`);
+      h.push(`<div class="sub">Why it changes: ${esc(e.mechanism_of_deviation)}</div>`);
+      const ecite = [e.hierarchy_level, e.citation].filter(Boolean).join(" \u00B7 ");
+      if (ecite) h.push(`<div class="sub">${esc(ecite)}</div></li>`);
+      else h.push(`</li>`);
     });
+    h.push(`</ol>`);
   }
-  md.push("");
 
   const assumptions = report.assumptions || [];
-  md.push("## 5. Flagged Assumptions / Underspecified Variables");
-  md.push("");
+  h.push(`<h2>5. Flagged Assumptions / Underspecified Variables</h2>`);
   if (assumptions.length) {
-    assumptions.forEach((a) => md.push(`- ${mdEscape(a)}`));
+    h.push(`<ul>`);
+    assumptions.forEach((a) => h.push(`<li>${esc(a)}</li>`));
+    h.push(`</ul>`);
   } else {
-    md.push("None flagged.");
+    h.push(`<p>None flagged.</p>`);
   }
-  md.push("");
 
   const followups = report.followups || [];
-  md.push("## 6. Suggested Follow-Up Questions / Experiments");
-  md.push("");
+  h.push(`<h2>6. Suggested Follow-Up Questions / Experiments</h2>`);
   if (followups.length) {
-    followups.forEach((f, i) => md.push(`${i + 1}. ${mdEscape(f)}`));
+    h.push(`<ol>`);
+    followups.forEach((f) => h.push(`<li>${esc(f)}</li>`));
+    h.push(`</ol>`);
   } else {
-    md.push("None suggested.");
+    h.push(`<p>None suggested.</p>`);
   }
-  md.push("");
 
-  return md.join("\n");
+  return h.join("");
+}
+
+function reportHtmlDocument(report) {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Re-Matrix Reasoning Report</title>
+<style>
+  body { font-family: Georgia, "Times New Roman", serif; color: #1a1a1a; line-height: 1.5; margin: 2.2cm 2.4cm; }
+  h1 { font-size: 24pt; color: #0b3d5c; margin: 0 0 2pt; }
+  p.meta { margin: 4pt 0; }
+  h2 { font-size: 15pt; color: #0b3d5c; border-bottom: 1.5pt solid #0b3d5c; padding-bottom: 2pt; margin-top: 18pt; }
+  h3 { font-size: 12pt; color: #145c8f; margin-bottom: 2pt; }
+  ul, ol { margin-top: 4pt; }
+  li { margin: 4pt 0; }
+  .sub { color: #444; font-size: 10.5pt; }
+  @media print { @page { size: A4; margin: 18mm; } }
+</style>
+</head>
+<body>
+${buildReportHtml(report)}
+</body>
+</html>`;
+}
+
+function buildReportPlain(report) {
+  const typeLabels = {
+    mechanistic: "Mechanistic",
+    therapeutic_hypothesis: "Therapeutic hypothesis",
+    edge_case_exploration: "Edge-case exploration",
+    comparative: "Comparative"
+  };
+  const now = new Date().toISOString().replace("T", " ").slice(0, 19) + " UTC";
+  const t = [];
+  const rule = (n) => n.replace(/[^ ]/g, "-");
+
+  t.push("Re-Matrix Reasoning Report");
+  t.push("==========================");
+  t.push("");
+  t.push("Generated: " + now);
+  t.push("Query: " + report.query);
+  t.push("");
+  t.push("1. Query Restatement");
+  t.push(rule("1. Query Restatement"));
+  t.push(report.query);
+  t.push("Classified as: " + (typeLabels[report.queryType] || report.queryType));
+  t.push("Causal question: " + (report.understanding.causal_question || ""));
+  t.push("");
+
+  t.push("2. Principles Invoked");
+  t.push(rule("2. Principles Invoked"));
+  const order = ["L0_axiom", "L1_mechanistic_pathway", "L2_context_modifier", "L3_known_exception"];
+  for (const lvl of order) {
+    const ps = (report.retrieved && report.retrieved[lvl]) || [];
+    if (!ps.length) continue;
+    t.push("");
+    t.push(LEVEL_LABELS[lvl]);
+    for (const p of ps) {
+      t.push(`  - ${p.content} (${shortLevel(p.hierarchy_level)})`);
+      t.push(`      Entities: ${p.entities.join(", ")}`);
+      t.push(`      Source: ${p.source_citation}`);
+    }
+  }
+  t.push("");
+
+  const te = report.thoughtExp || {};
+  t.push("3. Thought Experiment");
+  t.push(rule("3. Thought Experiment"));
+  t.push("Initial conditions: " + te.initial_conditions);
+  t.push("Intervention: " + te.intervention);
+  t.push("Held constant: " + (te.held_constant || []).join(", "));
+  t.push("");
+  t.push("Causal chain:");
+  for (const s of te.causal_chain || []) {
+    const p = CORPUS.idx[s.principle_id];
+    const lvl = shortLevel((p && p.hierarchy_level) || "");
+    const cite = s.citation || (p && p.source_citation) || "";
+    t.push(`  ${s.step_number}. ${s.principle_content} (${lvl})`);
+    t.push(`     Mechanistic consequence: ${s.mechanistic_consequence}`);
+    t.push(`     Confidence: ${s.confidence}`);
+    if (cite) t.push(`     Citation: ${cite}`);
+  }
+  t.push("");
+  t.push("PREDICTED OUTCOME: " + te.predicted_outcome);
+  t.push("Outcome confidence: " + te.outcome_confidence);
+  if (te.confidence_justification) t.push("Confidence justification: " + te.confidence_justification);
+  t.push("");
+
+  const edgeCases = report.edgeCases || [];
+  t.push("4. Edge Cases");
+  t.push(rule("4. Edge Cases"));
+  if (!edgeCases.length) {
+    t.push("None identified across the retrieved conditions.");
+  } else {
+    edgeCases.forEach((e, i) => {
+      t.push(`  ${i + 1}. ${(e.severity || "qualifies").toUpperCase()} - ${e.condition}`);
+      t.push(`     Why it changes: ${e.mechanism_of_deviation}`);
+      const ecite = [e.hierarchy_level, e.citation].filter(Boolean).join(" \u00B7 ");
+      if (ecite) t.push(`     ${ecite}`);
+    });
+  }
+  t.push("");
+
+  const assumptions = report.assumptions || [];
+  t.push("5. Flagged Assumptions / Underspecified Variables");
+  t.push(rule("5. Flagged Assumptions / Underspecified Variables"));
+  if (assumptions.length) assumptions.forEach((a) => t.push("  - " + a));
+  else t.push("None flagged.");
+  t.push("");
+
+  const followups = report.followups || [];
+  t.push("6. Suggested Follow-Up Questions / Experiments");
+  t.push(rule("6. Suggested Follow-Up Questions / Experiments"));
+  if (followups.length) followups.forEach((f, i) => t.push(`  ${i + 1}. ${f}`));
+  else t.push("None suggested.");
+  t.push("");
+
+  return t.join("\n");
 }
 
 function renderReport(report) {
@@ -740,29 +844,45 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  // Copy report as a formatted Markdown document
+  // Copy report as rich text (headings/bold/lists survive pasting into Word/Google Docs)
   const copyBtn = document.getElementById("copy-report");
   copyBtn.addEventListener("click", async () => {
     if (!lastReport) return;
-    const doc = buildReportMarkdown(lastReport);
+    const html = reportHtmlDocument(lastReport);
+    const plain = buildReportPlain(lastReport);
     try {
-      await navigator.clipboard.writeText(doc);
-      copyBtn.textContent = "Copied";
-      setTimeout(() => { copyBtn.textContent = "Copy"; }, 1500);
-    } catch (e) { /* ignore */ }
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          "text/html": new Blob([html], { type: "text/html" }),
+          "text/plain": new Blob([plain], { type: "text/plain" })
+        })
+      ]);
+    } catch (e) {
+      // Fallback: plain text via hidden textarea
+      try {
+        const ta = document.createElement("textarea");
+        ta.value = plain;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+      } catch (e2) { /* ignore */ }
+    }
+    copyBtn.textContent = "Copied";
+    setTimeout(() => { copyBtn.textContent = "Copy"; }, 1500);
   });
 
-  // Download report as a .md file
+  // Download report as a PDF (opens print dialog; choose "Save as PDF")
   document.getElementById("download-report").addEventListener("click", () => {
     if (!lastReport) return;
-    const doc = buildReportMarkdown(lastReport);
-    const slug = (lastReport.query || "report").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
-    const blob = new Blob([doc], { type: "text/markdown;charset=utf-8" });
-    const a = document.createElement("a");
-    a.href = URL.createObjectURL(blob);
-    a.download = `re-matrix-report-${slug || "report"}.md`;
-    a.click();
-    URL.revokeObjectURL(a.href);
+    const w = window.open("", "_blank");
+    if (!w) return;
+    w.document.write(reportHtmlDocument(lastReport));
+    w.document.close();
+    w.focus();
+    setTimeout(() => { w.print(); }, 300);
   });
 
   // Load corpus for header stats
