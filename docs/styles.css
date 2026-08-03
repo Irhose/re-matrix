@@ -24,6 +24,44 @@ body {
 
 .container { max-width: 980px; margin: 0 auto; padding: 0 20px; }
 
+/* Access gate */
+.gate {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.gate[hidden] { display: none; }
+.gate-box {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 36px 32px;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+}
+.gate-box .brand-mark { font-size: 34px; }
+.gate-box h1 { font-size: 24px; margin: 8px 0 4px; letter-spacing: 0.5px; }
+.gate-box .tagline { font-size: 13px; margin-bottom: 18px; }
+.gate-form { display: flex; flex-direction: column; gap: 10px; }
+.gate-form input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 11px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  text-align: center;
+}
+.gate-form input:focus { outline: 1px solid var(--accent); }
+.gate-note { margin-top: 14px; font-size: 11px; color: var(--text-dim); }
+.gate .status-text.err { margin-top: 10px; }
+
 .site-header {
   background: var(--bg-panel);
   border-bottom: 1px solid var(--border);

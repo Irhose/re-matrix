@@ -1,286 +1,2379 @@
 {
   "principles": [
     {
-      "id": "50fea115-5d9c-42b2-8a1f-7f0e236dae90",
-      "content": "Cancer arises from Darwinian selection among somatic cells acquiring heritable changes that enhance survival or reproduction.",
-      "domain": "immunology",
+      "id": "ae1edbb3-c2fe-440c-9d53-a499a00353f0",
+      "content": "Cancer represents evolution occurring among somatic cells.",
+      "domain": "cancer_pathogenesis",
       "hierarchy_level": "L0_axiom",
-      "entities": [
-        "somatic cells",
-        "cancer",
-        "Darwinian selection",
-        "heritable changes"
-      ],
+      "entities": [],
       "depends_on": [],
       "source_citation": "cancer pathophysiology principles:page_1"
     },
     {
-      "id": "ccc7421f-bced-449b-8f9d-4ffb1c430baf",
-      "content": "Cancer arises from the corruption of DNA, leading to alterations in cellular behavior and function.",
-      "domain": "immunology",
+      "id": "65d3b6e7-6bba-4adc-b41f-86d8e1018597",
+      "content": "Three conditions must exist for evolution to occur: Variation, Heritability, and Selection.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_1"
+    },
+    {
+      "id": "0fc4c089-b8ce-4faf-b7c4-6f2c9f76e42a",
+      "content": "Cells acquire genetic and epigenetic changes that create diversity.",
+      "domain": "cancer_pathogenesis",
       "hierarchy_level": "L1_mechanistic_pathway",
       "entities": [
-        "DNA",
-        "cell division",
-        "cell death",
-        "signals",
-        "chromosomal rearrangements",
-        "gene amplification",
-        "point mutations"
+        "genetic changes",
+        "epigenetic changes"
       ],
       "depends_on": [
-        "Cancer represents normal biology operating without appropriate regulation"
+        "Cancer represents evolution occurring among somatic cells."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_1"
+    },
+    {
+      "id": "0510ec29-87a9-4d51-927b-c70cb033fee3",
+      "content": "These changes are passed to daughter cells during division.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "daughter cells",
+        "division"
+      ],
+      "depends_on": [
+        "Cells acquire genetic and epigenetic changes that create diversity."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_1"
+    },
+    {
+      "id": "2d8ba5b7-a19c-4767-96a8-d4a89ba810b5",
+      "content": "Cells with advantageous characteristics survive and expand.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "cells",
+        "advantageous characteristics"
+      ],
+      "depends_on": [
+        "Three conditions must exist for evolution to occur: Variation, Heritability, and Selection."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_1"
+    },
+    {
+      "id": "c7948c43-2b8a-4c9d-8b3f-dce604b2f242",
+      "content": "Cancer does not create new biological mechanisms. Instead, it exploits pathways that normally regulate growth, repair, development, and survival.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_1"
+    },
+    {
+      "id": "888d7aae-5b9a-4a15-90eb-290412ad333c",
+      "content": "Cancer cells can activate EGFR signaling continuously to drive proliferation.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "EGFR signaling",
+        "cancer cells",
+        "proliferation"
+      ],
+      "depends_on": [
+        "Cancer does not create new biological mechanisms. Instead, it exploits pathways that normally regulate growth, repair, development, and survival."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_1"
+    },
+    {
+      "id": "2c60fda1-c4fb-4ce2-9208-835f825c2bb7",
+      "content": "VEGF promotes blood vessel formation during wound healing, but tumors exploit it for their own supply.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "VEGF",
+        "tumors",
+        "blood vessel formation"
+      ],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_2"
+    },
+    {
+      "id": "bece5bbb-1caf-4f54-8aca-04fcc13e79b6",
+      "content": "Telomerase maintains stem cell populations, but cancer cells reactivate it for unlimited replication.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "telomerase",
+        "stem cell populations",
+        "cancer cells"
+      ],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_2"
+    },
+    {
+      "id": "3248b701-dca2-4f33-b247-3a6fb14ce558",
+      "content": "PD-L1 helps prevent excessive immune activation, but tumors use it to suppress immune destruction.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "PD-L1",
+        "immune activation",
+        "tumors"
+      ],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_2"
+    },
+    {
+      "id": "10c42e7b-68eb-496e-829a-a4bb3cef8ea8",
+      "content": "Cancer represents normal biology operating without regulation.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "cancer",
+        "normal biology"
+      ],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_2"
+    },
+    {
+      "id": "511ba41e-c1aa-4ad1-ba2a-743da6d30f7b",
+      "content": "Cancer develops when DNA information becomes corrupted through mutations, amplifications, deletions, rearrangements, methylation, or chromatin regulation.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "DNA",
+        "mutations",
+        "amplifications",
+        "deletions",
+        "rearrangements",
+        "methylation",
+        "chromatin regulation"
+      ],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_2"
+    },
+    {
+      "id": "1426b97c-d945-4037-8437-3b6f4d657814",
+      "content": "Corrupted DNA information alters cell division, cell death, signal response, and environment interaction.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "cell division",
+        "cell death",
+        "signal response",
+        "environment interaction"
+      ],
+      "depends_on": [
+        "Cancer develops when DNA information becomes corrupted through mutations, amplifications, deletions, rearrangements, methylation, or chromatin regulation."
       ],
       "source_citation": "cancer pathophysiology principles:page_2"
     },
     {
-      "id": "f069795e-07a1-449c-9600-a400d0849461",
-      "content": "Tumor development and metastasis are interconnected processes driven by disruptions in cellular regulation, often stemming from single genetic alterations that impact multiple cancer behaviors.",
-      "domain": "immunology",
+      "id": "12c2cafd-4859-4e61-ae20-7015f2e3e4f6",
+      "content": "Cancer behavior reflects accumulated changes in its biological information system.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "cancer behavior",
+        "biological information system"
+      ],
+      "depends_on": [
+        "Cancer develops when DNA information becomes corrupted through mutations, amplifications, deletions, rearrangements, methylation, or chromatin regulation."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_2"
+    },
+    {
+      "id": "1beb3ed2-1638-4c20-a227-f748765dd162",
+      "content": "Cancer characteristics are interconnected.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "cancer characteristics"
+      ],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_2"
+    },
+    {
+      "id": "e5de9e72-de3c-4b14-b05a-608ef7c5d7a0",
+      "content": "Cancer characteristics include uncontrolled proliferation, resistance to cell death, genomic instability, immune escape, angiogenesis, and invasion.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L3_known_exception",
+      "entities": [
+        "uncontrolled proliferation",
+        "resistance to cell death",
+        "genomic instability",
+        "immune escape",
+        "angiogenesis",
+        "invasion"
+      ],
+      "depends_on": [
+        "Cancer characteristics are interconnected."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_2"
+    },
+    {
+      "id": "1ef2e0dd-b919-4375-978a-f771a7291176",
+      "content": "Metastasis and cellular regulation are interconnected.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "c061dd05-8c8e-492a-9971-bf8f8e889a6c",
+      "content": "A single mutation can influence multiple cancer behaviors.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "8220a315-b484-4a91-91b4-f18dd18de6c0",
+      "content": "TP53 loss impairs DNA repair.",
+      "domain": "cancer_pathogenesis",
       "hierarchy_level": "L1_mechanistic_pathway",
       "entities": [
         "TP53",
-        "KRAS",
-        "DNA repair",
-        "apoptosis",
-        "genomic instability",
-        "mutation accumulation",
-        "tumor evolution",
-        "cellular proliferation",
-        "angiogenesis",
-        "inflammatory signaling",
-        "immune suppression"
+        "DNA repair"
       ],
       "depends_on": [
-        "T-cell activation requires TCR engagement + costimulation"
+        "A single mutation can influence multiple cancer behaviors."
       ],
       "source_citation": "cancer pathophysiology principles:page_3"
     },
     {
-      "id": "c91ae3a6-6130-43cc-86eb-940922212328",
-      "content": "Tumors are subject to selective pressures that drive the elimination of sensitive cells and expansion of resistant populations.",
-      "domain": "immunology",
+      "id": "8a280c4f-36d1-46ba-934a-3d3975587314",
+      "content": "TP53 loss reduces apoptosis.",
+      "domain": "cancer_pathogenesis",
       "hierarchy_level": "L1_mechanistic_pathway",
       "entities": [
-        "cancer cells",
+        "TP53",
+        "apoptosis"
+      ],
+      "depends_on": [
+        "A single mutation can influence multiple cancer behaviors."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "3927550b-31fb-4ee9-a7e6-ce6aded9e6f4",
+      "content": "TP53 loss causes genomic instability.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "TP53",
+        "genomic instability"
+      ],
+      "depends_on": [
+        "A single mutation can influence multiple cancer behaviors."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "baaae218-e7f9-4a3f-84ca-5bd20f12390e",
+      "content": "TP53 loss increases mutation accumulation.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "TP53",
+        "mutation accumulation"
+      ],
+      "depends_on": [
+        "A single mutation can influence multiple cancer behaviors."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "92750c8f-f112-4ba8-a4cd-d03c362cf8d5",
+      "content": "TP53 loss enhances tumor evolution.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "TP53",
+        "tumor evolution"
+      ],
+      "depends_on": [
+        "A single mutation can influence multiple cancer behaviors."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "6a9e4b74-0829-4aed-afc4-36e1adebc23c",
+      "content": "KRAS activation promotes cellular proliferation.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "KRAS",
+        "cellular proliferation"
+      ],
+      "depends_on": [
+        "A single mutation can influence multiple cancer behaviors."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "d5bacdf0-d2a4-4c98-ab1d-4e03fda49eec",
+      "content": "KRAS activation alters metabolism.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "KRAS",
+        "metabolism"
+      ],
+      "depends_on": [
+        "A single mutation can influence multiple cancer behaviors."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "cb1b5d90-7537-4648-ae13-cea46d31abb9",
+      "content": "KRAS activation promotes angiogenesis.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "KRAS",
+        "angiogenesis"
+      ],
+      "depends_on": [
+        "A single mutation can influence multiple cancer behaviors."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "1e36811b-b67a-44f9-977f-0a2329953f73",
+      "content": "KRAS activation promotes inflammatory signaling.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "KRAS",
+        "inflammatory signaling"
+      ],
+      "depends_on": [
+        "A single mutation can influence multiple cancer behaviors."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "5d1f248a-b5d8-4f7a-8cde-fa167df9006c",
+      "content": "KRAS activation suppresses the immune system.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "KRAS",
+        "immune suppression"
+      ],
+      "depends_on": [
+        "A single mutation can influence multiple cancer behaviors."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "84d57b14-b6a4-4b02-a662-3eb2c8cbae5a",
+      "content": "Cancer biology is a network of interacting processes.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "7e83cf0f-8dd6-4ef6-a3d3-ca13d6185e79",
+      "content": "The tumor microenvironment is part of the cancer.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "4c4064f8-ed01-4e16-b0b4-0dd9b31df5fb",
+      "content": "A tumor includes fibroblasts, immune cells, endothelial cells, extracellular matrix, signaling molecules, and metabolic factors.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "fibroblasts",
+        "immune cells",
+        "endothelial cells",
+        "extracellular matrix",
+        "signaling molecules",
+        "metabolic factors"
+      ],
+      "depends_on": [
+        "The tumor microenvironment is part of the cancer."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "5139f4c7-f675-4985-a5fc-df1e87b0d660",
+      "content": "Tumors actively reshape their environment to support growth, invasion, angiogenesis, immune suppression, and resistance to treatment.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "growth",
+        "invasion",
+        "angiogenesis",
+        "immune suppression",
+        "resistance to treatment"
+      ],
+      "depends_on": [
+        "The tumor microenvironment is part of the cancer."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_3"
+    },
+    {
+      "id": "87d12b13-b93a-45ed-9b0a-f633a56c299f",
+      "content": "Tumor behavior is determined by both malignant cells and their surrounding ecosystem.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_4"
+    },
+    {
+      "id": "bfbf975f-9670-4d2c-a6f8-1070b8831aa4",
+      "content": "Cancer exists under constant selective pressure.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_4"
+    },
+    {
+      "id": "dd4d1f4e-69c4-42a0-b518-80852db7d88e",
+      "content": "Tumors are eliminated by pressures including oxygen limitation, nutrient scarcity, immune surveillance, chemotherapy, radiation, and targeted therapy.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "oxygen limitation",
+        "nutrient scarcity",
         "immune surveillance",
         "chemotherapy",
         "radiation",
         "targeted therapy"
       ],
       "depends_on": [
-        "Cancer exists as a population of cells with varying sensitivities.",
-        "External factors can influence cell survival and proliferation."
+        "Cancer exists under constant selective pressure"
       ],
       "source_citation": "cancer pathophysiology principles:page_4"
     },
     {
-      "id": "64a9c1b9-56c5-47ef-b4d6-a7df5333f845",
-      "content": "Genomic instability accelerates the rate of genetic change within cancer cells, enabling adaptation and escape from therapy but also risking impaired survival.",
+      "id": "d775c37e-6c1e-49dd-b8cd-942763327f42",
+      "content": "Sensitive cancer cells are eliminated, while resistant cells survive and expand.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [],
+      "depends_on": [
+        "Tumors are eliminated by pressures including oxygen limitation, nutrient scarcity, immune surveillance, chemotherapy, radiation, and targeted therapy"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_4"
+    },
+    {
+      "id": "6d7fffda-49b8-4cb2-9bc4-4f3e84b82fad",
+      "content": "Cancers relapse after initially successful treatment, metastatic disease differs from the original tumor, and resistance develops over time.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [],
+      "depends_on": [
+        "Tumors are eliminated by pressures including oxygen limitation, nutrient scarcity, immune surveillance, chemotherapy, radiation, and targeted therapy"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_4"
+    },
+    {
+      "id": "e7146861-983e-4b45-950c-f874d634b19b",
+      "content": "Every therapy creates a new environment in which cancer cells must adapt.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [],
+      "depends_on": [
+        "Cancer exists under constant selective pressure"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_4"
+    },
+    {
+      "id": "15a8b80b-dce7-4779-93e2-3e01f3526e88",
+      "content": "Cancer cells must generate sufficient energy and cellular building blocks to support continuous growth.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_4"
+    },
+    {
+      "id": "68794767-7244-4c81-952a-d2969368c7ff",
+      "content": "Tumors alter glucose metabolism, amino acid metabolism, lipid synthesis, mitochondrial function, and nutrient sensing pathways to support continuous growth.",
       "domain": "cancer_pathogenesis",
       "hierarchy_level": "L1_mechanistic_pathway",
       "entities": [
+        "glucose metabolism",
+        "amino acid metabolism",
+        "lipid synthesis",
+        "mitochondrial function",
+        "nutrient sensing pathways"
+      ],
+      "depends_on": [
+        "Cancer cells must generate sufficient energy and cellular building blocks to support continuous growth"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_4"
+    },
+    {
+      "id": "5d0c16f7-4c39-4ffa-912b-27407ee2f4b6",
+      "content": "The Warburg effect is an example of metabolic adaptation where cancer cells preferentially use glycolysis despite available oxygen.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L3_known_exception",
+      "entities": [
+        "Warburg effect",
+        "glycolysis"
+      ],
+      "depends_on": [
+        "Tumors alter glucose metabolism, amino acid metabolism, lipid synthesis, mitochondrial function, and nutrient sensing pathways to support continuous growth"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_4"
+    },
+    {
+      "id": "bffa37ba-bfbd-4dc4-b14c-18a0232f9e12",
+      "content": "Genomic Instability Accelerates Cancer Evolution",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "genomic instability",
+        "cancer evolution",
         "TP53",
         "BRCA1",
         "BRCA2",
         "mismatch repair"
       ],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "719f8a4b-45e5-4fb9-8539-f867aa505210",
+      "content": "TP53 dysfunction increases the rate of new genetic changes",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "TP53",
+        "genetic changes"
+      ],
       "depends_on": [
-        "Cancers develop metabolic dependencies that create therapeutic vulnerabilities."
+        "Genomic Instability Accelerates Cancer Evolution"
       ],
       "source_citation": "cancer pathophysiology principles:page_5"
     },
     {
-      "id": "b2e2008c-c46a-4575-95f0-5d2d79d32b5a",
-      "content": "Cancer cell survival and malignant behavior are critically dependent on specific driver mutations, creating a vulnerability that can be exploited therapeutically.",
+      "id": "aa0ef85f-9130-41bd-8622-c680052efbf0",
+      "content": "BRCA1 and BRCA2 defects increase the rate of new genetic changes",
       "domain": "cancer_pathogenesis",
       "hierarchy_level": "L1_mechanistic_pathway",
       "entities": [
-        "cancer cells",
-        "driver mutations",
-        "oncogene addiction",
-        "targeted therapies"
+        "BRCA1",
+        "BRCA2",
+        "genetic changes"
       ],
       "depends_on": [
-        "Cancer is the interaction between genetic alteration + cell of origin + tissue environment"
+        "Genomic Instability Accelerates Cancer Evolution"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "071235bc-7fc3-429a-8569-3cb97a585f6d",
+      "content": "Mismatch repair deficiency increases the rate of new genetic changes",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "mismatch repair",
+        "genetic changes"
+      ],
+      "depends_on": [
+        "Genomic Instability Accelerates Cancer Evolution"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "76de21f9-364d-4aa0-a479-9aef99718f3b",
+      "content": "Genomic instability can impair cellular survival",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "genomic instability",
+        "cellular survival"
+      ],
+      "depends_on": [
+        "Genomic Instability Accelerates Cancer Evolution"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "166236f7-0752-4581-b6b9-05d122ea51fc",
+      "content": "Cancer evolution depends on maintaining genomic instability and cellular function",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "cancer evolution",
+        "genomic instability",
+        "cellular function"
+      ],
+      "depends_on": [
+        "Genomic Instability Accelerates Cancer Evolution"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "5375a366-19a6-4035-b1b5-70b9d21d4c04",
+      "content": "The cell of origin influences cancer behavior",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "cell of origin",
+        "cancer behavior"
+      ],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "c272b825-0da8-4254-a6d7-de0491844133",
+      "content": "KRAS mutations produce different cancers in different tissues",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "KRAS",
+        "pancreatic cancer",
+        "colorectal cancer",
+        "lung cancer"
+      ],
+      "depends_on": [
+        "The cell of origin matters"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "273aeae4-1620-4f41-bbb7-fada3af42d07",
+      "content": "Tissue-specific cellular programs influence cancer behavior",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "cellular programs",
+        "cancer behavior"
+      ],
+      "depends_on": [
+        "The cell of origin matters"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "6bcaa6f6-e447-45c0-929c-ab278df11b57",
+      "content": "Tissue-specific epigenetic patterns influence cancer behavior",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "epigenetic patterns",
+        "cancer behavior"
+      ],
+      "depends_on": [
+        "The cell of origin matters"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "bdfa0be9-beec-48d8-bc51-a0600cec4e0b",
+      "content": "Tissue-specific stem cell populations influence cancer behavior",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "stem cell populations",
+        "cancer behavior"
+      ],
+      "depends_on": [
+        "The cell of origin matters"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "715331b1-3385-49d9-a5b1-78b706c0c462",
+      "content": "Tissue-specific hormonal influences influence cancer behavior",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "hormonal influences",
+        "cancer behavior"
+      ],
+      "depends_on": [
+        "The cell of origin matters"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "cc355d6e-5945-4041-b2a9-73f93d78565c",
+      "content": "Tissue-specific immune environments influence cancer behavior",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "immune environments",
+        "cancer behavior"
+      ],
+      "depends_on": [
+        "The cell of origin matters"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_5"
+    },
+    {
+      "id": "392527b4-06cb-4058-a8d0-369425193341",
+      "content": "Cancer is the interaction between genetic alteration, cell of origin, and tissue environment",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "0b05bcfd-cc51-49c2-b9f3-baa74d95ce9a",
+      "content": "Cancer cells become dependent on specific drivers",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "driver mutations"
+      ],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "a9b36fc9-5805-49b1-baed-33387f8e4491",
+      "content": "Driver mutations are essential for maintaining malignant behavior",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "driver mutations"
+      ],
+      "depends_on": [
+        "Cancer cells become dependent on specific drivers"
       ],
       "source_citation": "cancer pathophysiology principles:page_6"
     },
     {
-      "id": "4a2d4770-2e73-4dcb-9420-ee07ebac1bc3",
-      "content": "Cancer arises from somatic cells acquiring heritable alterations that confer selective advantages within a tissue ecosystem, leading to uncontrolled growth and other hallmarks.",
+      "id": "ab0a6e66-b622-4dd8-a1f7-94e4ad82b615",
+      "content": "Oncogene addiction occurs when cancer cells depend on specific drivers",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "oncogene addiction",
+        "driver mutations"
+      ],
+      "depends_on": [
+        "Cancer cells become dependent on specific drivers"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "979b8572-7d55-4ee0-9c68-cfcfe3c702f9",
+      "content": "Targeted therapies exploit oncogene addiction by blocking pathways",
+      "domain": "intersection",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "targeted therapies",
+        "oncogene addiction"
+      ],
+      "depends_on": [
+        "Oncogene addiction occurs when cancer cells depend on specific drivers"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "3a353323-8230-452d-a5a7-6e723f172fd5",
+      "content": "Tumors can evolve resistance through secondary mutations",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "secondary mutations"
+      ],
+      "depends_on": [
+        "Cancer cells become dependent on specific drivers"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "b179b60c-744e-4669-8792-3eeba08b529f",
+      "content": "Tumors can evolve resistance through alternative pathway activation",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "alternative pathways"
+      ],
+      "depends_on": [
+        "Cancer cells become dependent on specific drivers"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "84a8262b-996f-4969-a221-edf88f50d584",
+      "content": "Tumors can evolve resistance through cellular identity change",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [],
+      "depends_on": [
+        "Cancer cells become dependent on specific drivers"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "4b003c1d-0052-4bf5-8df0-8d210638dbb9",
+      "content": "Cancer progression follows a recurring pattern of initiation, clonal expansion, diversification, selection, microenvironment remodeling, dissemination, therapeutic selection, and relapse",
       "domain": "cancer_pathogenesis",
       "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "290fb1e3-60e0-4cfb-bb2d-b91a4d0eb5de",
+      "content": "Initiation occurs when a normal cell acquires an alteration providing a survival advantage",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
       "entities": [
-        "somatic cell",
-        "tissue ecosystem",
-        "heritable alteration"
+        "normal cell",
+        "alteration"
       ],
+      "depends_on": [
+        "Cancer progression follows a recurring pattern of initiation, clonal expansion, diversification, selection, microenvironment remodeling, dissemination, therapeutic selection, and relapse"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "8add82c4-439e-48d6-a1d3-6fa6080208ed",
+      "content": "Clonal expansion occurs when the altered cell population grows larger",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "altered cell population"
+      ],
+      "depends_on": [
+        "Initiation occurs when a normal cell acquires an alteration providing a survival advantage"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "0bbdf213-0157-486c-aa42-e6ea071dda94",
+      "content": "Diversification occurs through additional genetic and epigenetic changes",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "genetic changes",
+        "epigenetic changes"
+      ],
+      "depends_on": [
+        "Clonal expansion occurs when the altered cell population grows larger"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "c0ed101f-57e8-4dbc-aacf-3b6dfe787dbd",
+      "content": "Selection occurs when environmental pressures favor the most adaptable clones",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "environmental pressures",
+        "clones"
+      ],
+      "depends_on": [
+        "Diversification occurs through additional genetic and epigenetic changes"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "ee2dfb57-8ec4-4ca3-9d92-3742b554e546",
+      "content": "Microenvironment remodeling occurs when the tumor recruits and modifies surrounding cells",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "tumor",
+        "surrounding cells"
+      ],
+      "depends_on": [
+        "Selection occurs when environmental pressures favor the most adaptable clones"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "a99850ee-afae-48c0-a6a9-3406debb36f0",
+      "content": "Dissemination occurs when some clones acquire the ability to invade and metastasize",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "clones",
+        "ability to invade and metastasize"
+      ],
+      "depends_on": [
+        "Microenvironment remodeling occurs when the tumor recruits and modifies surrounding cells"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "75844fd2-a9fc-4813-887e-5c24f340b220",
+      "content": "Therapeutic selection occurs when treatment eliminates sensitive cells while resistant populations survive",
+      "domain": "intersection",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "treatment",
+        "sensitive cells",
+        "resistant populations"
+      ],
+      "depends_on": [
+        "Dissemination occurs when some clones acquire the ability to invade and metastasize"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "7c383d7c-65fc-4f7b-90c9-b31025285690",
+      "content": "Relapse occurs when resistant clones expand and produce recurrent disease",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "resistant clones",
+        "recurrent disease"
+      ],
+      "depends_on": [
+        "Therapeutic selection occurs when treatment eliminates sensitive cells while resistant populations survive"
+      ],
+      "source_citation": "cancer pathophysiology principles:page_6"
+    },
+    {
+      "id": "1251e7e9-98e1-4fdb-9bc3-84ac7444a402",
+      "content": "Cancer arises from somatic cells accumulating heritable alterations for selective advantages.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
       "depends_on": [],
       "source_citation": "cancer pathophysiology principles:page_7"
     },
     {
-      "id": "9468a6b8-b744-4db1-aa37-a9740c9b9a84",
-      "content": "The immune system actively monitors the body for emerging abnormal cells and eliminates precancerous or early cancer cells before they progress to clinically relevant disease.",
-      "domain": "immunology",
+      "id": "0d1b87db-bc3b-4328-86ad-f41c563abc83",
+      "content": "Uncontrolled growth is a strategy for evolving cell populations to survive and expand.",
+      "domain": "cancer_pathogenesis",
       "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [],
+      "depends_on": [
+        "Cancer arises from somatic cells accumulating heritable alterations for selective advantages."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_7"
+    },
+    {
+      "id": "9877cdaa-8f79-48a3-bd02-70d564532688",
+      "content": "Angiogenesis is a strategy for evolving cell populations to survive and expand.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [],
+      "depends_on": [
+        "Cancer arises from somatic cells accumulating heritable alterations for selective advantages."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_7"
+    },
+    {
+      "id": "d0624fe7-ac9c-472a-b38e-c13c08b8d154",
+      "content": "Immune evasion is a strategy for evolving cell populations to survive and expand.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [],
+      "depends_on": [
+        "Cancer arises from somatic cells accumulating heritable alterations for selective advantages."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_7"
+    },
+    {
+      "id": "d4e359a1-14a9-4395-94ba-351177bc4991",
+      "content": "Metastasis is a strategy for evolving cell populations to survive and expand.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [],
+      "depends_on": [
+        "Cancer arises from somatic cells accumulating heritable alterations for selective advantages."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_7"
+    },
+    {
+      "id": "431790d7-00ac-4a28-b63d-140a9989976a",
+      "content": "Metabolic adaptation is a strategy for evolving cell populations to survive and expand.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [],
+      "depends_on": [
+        "Cancer arises from somatic cells accumulating heritable alterations for selective advantages."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_7"
+    },
+    {
+      "id": "17da27a9-2d77-4583-8e8e-af5ec9d71fc1",
+      "content": "Treatment resistance is a strategy for evolving cell populations to survive and expand.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [],
+      "depends_on": [
+        "Cancer arises from somatic cells accumulating heritable alterations for selective advantages."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_7"
+    },
+    {
+      "id": "b9147d9d-db10-4a51-862b-4db9ed02c13b",
+      "content": "Understanding cancer pathophysiology provides a foundation for understanding individual cancers.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [],
+      "depends_on": [
+        "Cancer arises from somatic cells accumulating heritable alterations for selective advantages."
+      ],
+      "source_citation": "cancer pathophysiology principles:page_7"
+    },
+    {
+      "id": "d62b422d-5b0c-495f-b101-5136efaef218",
+      "content": "The immune system detects and eliminates nascent transformed cells.",
+      "domain": "immunology",
+      "hierarchy_level": "L0_axiom",
       "entities": [
         "immune system",
-        "abnormal cells",
-        "precancerous cells",
-        "early cancer cells",
+        "transformed cells"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_1"
+    },
+    {
+      "id": "c6c348ec-6614-4ea7-81ba-8c79b3ad3d77",
+      "content": "Cells have internal anti-cancer programs to stop the cell cycle, trigger repair, or induce apoptosis when DNA damage is excessive.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "DNA damage sensors",
+        "p53 pathways",
+        "cell cycle",
         "apoptosis"
       ],
       "depends_on": [],
       "source_citation": "the immune system and cancer:page_1"
     },
     {
-      "id": "d7886004-c2e3-4580-a2fa-bce43e7b4c1d",
-      "content": "Cells experiencing oncogenic or genotoxic stress upregulate surface molecules that act as 'altered self' signals, triggering innate immune responses.",
+      "id": "912dcfd3-0eee-498a-af21-257a7e793419",
+      "content": "Small populations of tumor cells can persist but are held in check by the immune system.",
+      "domain": "immunology",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "tumor cells",
+        "immune system"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_1"
+    },
+    {
+      "id": "ea200583-e7a1-4fb8-9b47-e7c81d4ab40d",
+      "content": "Subclones of tumor cells can evolve to evade control and lead to clinically apparent cancer.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "tumor cells",
+        "subclones"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_1"
+    },
+    {
+      "id": "f691a745-dbd2-4647-be13-19065155e2fc",
+      "content": "Cells can accumulate DNA damage from replication errors, inflammation, radiation, and toxins.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "DNA damage",
+        "replication errors",
+        "inflammation",
+        "radiation",
+        "toxins"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_1"
+    },
+    {
+      "id": "1f1597b6-6983-408c-8990-b1c4b90c9dc4",
+      "content": "Most damaged cells are repaired, forced into senescence, or eliminated by apoptosis.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "damaged cells",
+        "apoptosis",
+        "senescence"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_1"
+    },
+    {
+      "id": "b1b2c0cb-90dd-4c3e-89b5-00c4e5975af9",
+      "content": "The immune system helps recognize and clear damaged cells that slip through intrinsic checkpoints.",
       "domain": "immunology",
       "hierarchy_level": "L1_mechanistic_pathway",
       "entities": [
-        "cancer cells",
-        "oncogenic stress",
-        "genotoxic stress",
-        "surface molecules",
-        "innate immune responses"
+        "immune system",
+        "damaged cells",
+        "intrinsic checkpoints"
       ],
       "depends_on": [
-        "Cells can undergo apoptosis or senescence.",
-        "Immune cells sample the environment."
+        "Cells have internal anti-cancer programs to stop the cell cycle, trigger repair, or induce apoptosis when DNA damage is excessive."
+      ],
+      "source_citation": "the immune system and cancer:page_1"
+    },
+    {
+      "id": "e4d3d89a-5f9e-4640-af46-f094daf741d5",
+      "content": "The immune system can hold small populations of tumor cells in check.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "immune system",
+        "tumor cells"
+      ],
+      "depends_on": [
+        "Small populations of tumor cells can persist but are held in check by the immune system."
+      ],
+      "source_citation": "the immune system and cancer:page_1"
+    },
+    {
+      "id": "8d1f90d5-e18d-4a78-8c52-ee0b72381d05",
+      "content": "Subclones of tumor cells can evade control by evolving to evade the immune system.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "tumor cells",
+        "subclones",
+        "immune system"
+      ],
+      "depends_on": [
+        "Subclones of tumor cells can evolve to evade control and lead to clinically apparent cancer."
+      ],
+      "source_citation": "the immune system and cancer:page_1"
+    },
+    {
+      "id": "cd00525f-b27c-4d5b-9beb-ce999c8002a1",
+      "content": "In hypoxic conditions, cells may accumulate more DNA damage.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "hypoxic conditions",
+        "DNA damage"
+      ],
+      "depends_on": [
+        "Cells can accumulate DNA damage from replication errors, inflammation, radiation, and toxins."
+      ],
+      "source_citation": "the immune system and cancer:page_1"
+    },
+    {
+      "id": "287ba2a2-cd73-4bc1-a30e-7fa33bde4d79",
+      "content": "Intrinsic cellular safeguards can push cells into senescence.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "intrinsic cellular safeguards",
+        "senescence"
+      ],
+      "depends_on": [
+        "Cells have internal anti-cancer programs to stop the cell cycle, trigger repair, or induce apoptosis when DNA damage is excessive."
+      ],
+      "source_citation": "the immune system and cancer:page_1"
+    },
+    {
+      "id": "e7a26dcf-a7b2-4930-a4e0-3166400f39fd",
+      "content": "Senescent and apoptotic cells expose \u2018eat me\u2019 signals that attract phagocytes.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "senescent cells",
+        "apoptotic cells",
+        "phagocytes",
+        "phosphatidylserine"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_2"
+    },
+    {
+      "id": "725f4267-cfa4-4bdd-89f8-5e122cacc525",
+      "content": "Phagocytes engulf debris and present abnormal peptides to T cells.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "phagocytes",
+        "T cells",
+        "abnormal peptides"
+      ],
+      "depends_on": [
+        "Senescent and apoptotic cells expose \u2018eat me\u2019 signals that attract phagocytes."
       ],
       "source_citation": "the immune system and cancer:page_2"
     },
     {
-      "id": "bf93f819-c580-4fbb-8d4f-e9529b462d51",
-      "content": "Dendritic cells process antigens from dying tumor cells and present peptide fragments on MHC molecules to prime na\u00efve CD8+ and CD4+ T cells in lymph nodes.",
+      "id": "67108f66-0ac4-435d-b863-a5bcb2ba94e1",
+      "content": "Cells under oncogenic or genotoxic stress upregulate surface molecules that flag them as \u2018altered self\u2019.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "oncogenic stress",
+        "genotoxic stress",
+        "surface molecules"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_2"
+    },
+    {
+      "id": "1437b423-fa7e-44a6-8e6c-3589422957f0",
+      "content": "Precancerous cells increase ligands for activating receptors on NK cells.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "precancerous cells",
+        "NK cells",
+        "NKG2D ligands",
+        "MICA/B"
+      ],
+      "depends_on": [
+        "Cells under oncogenic or genotoxic stress upregulate surface molecules that flag them as \u2018altered self\u2019."
+      ],
+      "source_citation": "the immune system and cancer:page_2"
+    },
+    {
+      "id": "5bd8c631-63ef-42d9-8b6c-049741f9ce71",
+      "content": "NK cells recognize the imbalance between \u2018normal self\u2019 signals and \u2018stress\u2019 signals.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "NK cells",
+        "normal self signals",
+        "stress signals"
+      ],
+      "depends_on": [
+        "Precancerous cells increase ligands for activating receptors on NK cells."
+      ],
+      "source_citation": "the immune system and cancer:page_2"
+    },
+    {
+      "id": "e0b38974-0586-4e81-aa88-d56260bcd0f5",
+      "content": "NK cells release perforin and granzymes to induce apoptosis in stressed cells.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "NK cells",
+        "perforin",
+        "granzymes",
+        "apoptosis"
+      ],
+      "depends_on": [
+        "NK cells recognize the imbalance between \u2018normal self\u2019 signals and \u2018stress\u2019 signals."
+      ],
+      "source_citation": "the immune system and cancer:page_2"
+    },
+    {
+      "id": "78e96003-e68e-4ac9-a179-fd7c704e8476",
+      "content": "Pattern-recognition receptors on macrophages and dendritic cells detect danger signals.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "pattern-recognition receptors",
+        "macrophages",
+        "dendritic cells",
+        "danger signals"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_2"
+    },
+    {
+      "id": "9fd6f000-c9c4-4f7a-a7bf-554abc604d78",
+      "content": "Innate immune cells constantly sample the environment for danger signals.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "innate immune cells",
+        "environment"
+      ],
+      "depends_on": [
+        "Pattern-recognition receptors on macrophages and dendritic cells detect danger signals."
+      ],
+      "source_citation": "the immune system and cancer:page_2"
+    },
+    {
+      "id": "0283d94e-238e-43f9-823f-28a3528f1d21",
+      "content": "Every cell has an internal alarm system (p53) that stops badly damaged cells from dividing.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "p53",
+        "internal alarm system"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_2"
+    },
+    {
+      "id": "077f54f0-1677-4159-950c-a623f5a53b24",
+      "content": "NK cells act like bouncers, checking for a mismatched ID badge and killing on the spot.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "NK cells",
+        "ID badge"
+      ],
+      "depends_on": [
+        "Every cell has an internal alarm system (p53) that stops badly damaged cells from dividing."
+      ],
+      "source_citation": "the immune system and cancer:page_2"
+    },
+    {
+      "id": "9092a42f-19c2-421f-a303-5ed1f8ed5e66",
+      "content": "Tumor cells express neoantigens: novel peptides derived from mutated proteins presented on MHC I molecules.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "neoantigens",
+        "MHC I molecules",
+        "mutated proteins"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_3"
+    },
+    {
+      "id": "a3a9713c-4c47-4ab2-999a-2919e5d59ad1",
+      "content": "Tumor cells may overexpress normal self proteins at abnormal levels or in unusual contexts, creating tumor-associated antigens.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "tumor-associated antigens",
+        "normal self proteins"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_3"
+    },
+    {
+      "id": "37d7ad4d-0422-4638-8a8b-9e25409bf5f6",
+      "content": "Dendritic cells ingest dying tumor or precancerous cells, process the proteins, and present peptide fragments on MHC molecules.",
       "domain": "immunology",
       "hierarchy_level": "L1_mechanistic_pathway",
       "entities": [
         "dendritic cells",
         "MHC molecules",
-        "CD8+ T cell",
-        "CD4+ T cell",
-        "lymph nodes",
-        "antigens"
+        "peptide fragments"
       ],
       "depends_on": [
-        "T cells require antigen presentation for activation"
+        "Tumor cells express neoantigens: novel peptides derived from mutated proteins presented on MHC I molecules."
       ],
       "source_citation": "the immune system and cancer:page_3"
     },
     {
-      "id": "57e0bfe2-e576-4cd5-aa1c-37d190229c2b",
-      "content": "The immune system can maintain a dynamic equilibrium with small tumor cell clusters by balancing tumor cell division and death, preventing macroscopic growth.",
+      "id": "17a4ce66-8eef-44a6-b9f8-95f6e03314b0",
+      "content": "Dendritic cells migrate to lymph nodes and prime na\u00efve CD8 and CD4 T cells against these antigens.",
       "domain": "immunology",
       "hierarchy_level": "L1_mechanistic_pathway",
       "entities": [
-        "CD8+ T cell",
-        "CD4+ T cell",
-        "NK cell",
-        "macrophages",
-        "interferon-gamma",
-        "tumor cells"
+        "dendritic cells",
+        "CD8 T cells",
+        "CD4 T cells",
+        "lymph nodes"
       ],
       "depends_on": [
-        "T-cell activation requires TCR engagement + costimulation",
-        "Cytotoxic mediators induce apoptosis in target cells"
+        "Dendritic cells ingest dying tumor or precancerous cells, process the proteins, and present peptide fragments on MHC molecules."
+      ],
+      "source_citation": "the immune system and cancer:page_3"
+    },
+    {
+      "id": "40977ee7-865b-4049-b75f-2186c4b7e31a",
+      "content": "Activated CD8 T cells patrol tissues and scan MHC I on cells for the specific tumor peptide they recognize.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "CD8 T cells",
+        "MHC I",
+        "tumor peptide"
+      ],
+      "depends_on": [
+        "Dendritic cells migrate to lymph nodes and prime na\u00efve CD8 and CD4 T cells against these antigens."
+      ],
+      "source_citation": "the immune system and cancer:page_3"
+    },
+    {
+      "id": "475317b1-48d1-4b5f-bb03-a134ce8e2122",
+      "content": "Activated CD8 T cells form an immune synapse and release perforin and granzymes, triggering apoptosis of that single target cell.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "CD8 T cells",
+        "perforin",
+        "granzymes",
+        "apoptosis"
+      ],
+      "depends_on": [
+        "Activated CD8 T cells patrol tissues and scan MHC I on cells for the specific tumor peptide they recognize."
+      ],
+      "source_citation": "the immune system and cancer:page_3"
+    },
+    {
+      "id": "7d57d380-659c-4658-9693-f87f8bee57d6",
+      "content": "Activated CD8 T cells can also engage death receptors (e.g., Fas\u2013FasL) to induce programmed cell death.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "CD8 T cells",
+        "death receptors",
+        "Fas\u2013FasL"
+      ],
+      "depends_on": [
+        "Activated CD8 T cells form an immune synapse and release perforin and granzymes, triggering apoptosis of that single target cell."
+      ],
+      "source_citation": "the immune system and cancer:page_3"
+    },
+    {
+      "id": "b265643f-f800-44fd-a4c0-7559b93422d4",
+      "content": "Helper T cells provide cytokines (e.g., interferon-gamma) that increase MHC expression on tumor and stromal cells.",
+      "domain": "immunology",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "helper T cells",
+        "cytokines",
+        "interferon-gamma",
+        "MHC expression"
+      ],
+      "depends_on": [
+        "Activated CD8 T cells can also engage death receptors (e.g., Fas\u2013FasL) to induce programmed cell death."
+      ],
+      "source_citation": "the immune system and cancer:page_3"
+    },
+    {
+      "id": "e9168c27-1e5b-431b-b917-2475f6b31f29",
+      "content": "Helper T cells enhance the activity of macrophages and promote B-cell antibody production against tumor-associated antigens.",
+      "domain": "immunology",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "helper T cells",
+        "macrophages",
+        "B cells",
+        "antibody production"
+      ],
+      "depends_on": [
+        "Helper T cells provide cytokines (e.g., interferon-gamma) that increase MHC expression on tumor and stromal cells."
+      ],
+      "source_citation": "the immune system and cancer:page_3"
+    },
+    {
+      "id": "e98eab5c-72f3-4d33-9520-cd633d514494",
+      "content": "Antibodies can bind surface antigens on tumor cells, flagging them for antibody-dependent cellular cytotoxicity (ADCC) by NK cells and other effector cells.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "antibodies",
+        "NK cells",
+        "ADCC"
+      ],
+      "depends_on": [
+        "Helper T cells enhance the activity of macrophages and promote B-cell antibody production against tumor-associated antigens."
+      ],
+      "source_citation": "the immune system and cancer:page_3"
+    },
+    {
+      "id": "1b7ddced-40c4-4512-a030-8a3a4eba00ae",
+      "content": "Complement activation on antibody-coated tumor cells can contribute to lysis or opsonization for phagocytosis.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "complement activation",
+        "antibody-coated tumor cells",
+        "lysis",
+        "opsonization"
+      ],
+      "depends_on": [
+        "Antibodies can bind surface antigens on tumor cells, flagging them for antibody-dependent cellular cytotoxicity (ADCC) by NK cells and other effector cells."
+      ],
+      "source_citation": "the immune system and cancer:page_3"
+    },
+    {
+      "id": "f96e1542-efac-43cb-a505-20fb6bdcd3d0",
+      "content": "The immune system may contain small clusters of tumor cells so they divide and die at roughly the same rate, never forming a detectable mass.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "tumor cells",
+        "immune system"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_4"
+    },
+    {
+      "id": "ad43e457-278b-4e82-9364-1dbd86b574e8",
+      "content": "CD8 and CD4 T cells, NK cells, and macrophages keep attacking, producing interferon-gamma and cytotoxic mediators that restrain growth.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "CD8 T cells",
+        "CD4 T cells",
+        "NK cells",
+        "macrophages",
+        "interferon-gamma",
+        "cytotoxic mediators"
+      ],
+      "depends_on": [
+        "The immune system may contain small clusters of tumor cells so they divide and die at roughly the same rate, never forming a detectable mass."
       ],
       "source_citation": "the immune system and cancer:page_4"
     },
     {
-      "id": "0eae62df-4561-4f4a-8e44-5d065bb9bc2b",
-      "content": "Tumors secrete immunosuppressive cytokines, such as TGF-beta and IL-10, which inhibit effector T cells and NK cells while promoting the expansion of regulatory T cells (Tregs) and myeloid-derived suppressor cells (MDSCs).",
-      "domain": "immunology",
-      "hierarchy_level": "L1_mechanistic_pathway",
+      "id": "1c18fd55-74ce-4ed0-adc7-e63efa51328e",
+      "content": "Tumor cells under this pressure may down-modulate immunogenic antigens or MHC I, or alter signaling pathways to resist apoptosis.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
       "entities": [
-        "tumor",
-        "TGF-beta",
-        "IL-10",
-        "effector T cell",
-        "NK cell",
-        "regulatory T cells (Tregs)",
-        "myeloid-derived suppressor cells (MDSCs)"
+        "tumor cells",
+        "immunogenic antigens",
+        "MHC I",
+        "signaling pathways"
       ],
       "depends_on": [
-        "The immune system acts at multiple levels to prevent, target, and control cancer."
+        "CD8 and CD4 T cells, NK cells, and macrophages keep attacking, producing interferon-gamma and cytotoxic mediators that restrain growth."
       ],
+      "source_citation": "the immune system and cancer:page_4"
+    },
+    {
+      "id": "c277ce74-af93-48d3-a3c7-160994dc9ffd",
+      "content": "Downregulating MHC I so CTLs can no longer recognize tumor antigens effectively.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "MHC I",
+        "CTLs",
+        "tumor antigens"
+      ],
+      "depends_on": [
+        "The immune system may contain small clusters of tumor cells so they divide and die at roughly the same rate, never forming a detectable mass."
+      ],
+      "source_citation": "the immune system and cancer:page_4"
+    },
+    {
+      "id": "2053c7b0-7508-4e3c-bdab-abeb6e63e4d8",
+      "content": "Losing or editing the most immunogenic neoantigens, leaving only low-visibility subclones.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "neoantigens",
+        "subclones"
+      ],
+      "depends_on": [
+        "The immune system may contain small clusters of tumor cells so they divide and die at roughly the same rate, never forming a detectable mass."
+      ],
+      "source_citation": "the immune system and cancer:page_4"
+    },
+    {
+      "id": "b6dc1169-c5c7-47bf-80df-48b7bc9362e8",
+      "content": "Upregulating non-classical MHC molecules that inhibit NK cells despite reduced classical MHC I.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "non-classical MHC molecules",
+        "NK cells",
+        "MHC I"
+      ],
+      "depends_on": [
+        "The immune system may contain small clusters of tumor cells so they divide and die at roughly the same rate, never forming a detectable mass."
+      ],
+      "source_citation": "the immune system and cancer:page_4"
+    },
+    {
+      "id": "be1ad76d-fe65-4ba8-a090-4c28b75b4acd",
+      "content": "T cells naturally have inhibitory checkpoints to prevent autoimmunity; tumors hijack these.",
+      "domain": "immunology",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "T cells",
+        "inhibitory checkpoints"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_4"
+    },
+    {
+      "id": "b6dd243b-16eb-45f4-8e7c-7e9c884eae4b",
+      "content": "Tumor and stromal cells often overexpress ligands such as PD-L1 that bind PD-1 on T cells, sending a \u201cstand down\u201d signal.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "PD-L1",
+        "PD-1",
+        "T cells",
+        "stromal cells"
+      ],
+      "depends_on": [
+        "T cells naturally have inhibitory checkpoints to prevent autoimmunity; tumors hijack these."
+      ],
+      "source_citation": "the immune system and cancer:page_4"
+    },
+    {
+      "id": "15e8ff24-3e0a-4695-9545-48b07ec8b935",
+      "content": "Many tumors upregulate other checkpoints like CTLA-4 signaling pathways that dampen T-cell activation.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "CTLA-4",
+        "signaling pathways",
+        "T cells"
+      ],
+      "depends_on": [
+        "T cells naturally have inhibitory checkpoints to prevent autoimmunity; tumors hijack these."
+      ],
+      "source_citation": "the immune system and cancer:page_4"
+    },
+    {
+      "id": "1437cce4-632f-456d-a6ac-6cb781189f0d",
+      "content": "T cells remain present but less functional, with reduced cytokine production, proliferation, and cytotoxicity over time.",
+      "domain": "immunology",
+      "hierarchy_level": "L3_known_exception",
+      "entities": [
+        "T cells",
+        "cytokine production",
+        "proliferation",
+        "cytotoxicity"
+      ],
+      "depends_on": [
+        "T cells naturally have inhibitory checkpoints to prevent autoimmunity; tumors hijack these."
+      ],
+      "source_citation": "the immune system and cancer:page_4"
+    },
+    {
+      "id": "6e222945-24cb-43c0-a644-687697803e46",
+      "content": "Tumors secrete immunosuppressive cytokines like TGF-beta and IL-10 that blunt effector T cells and NK cells while promoting regulatory T cells (Tregs) and myeloid-derived suppressor cells (MDSCs).",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "TGF-beta",
+        "IL-10",
+        "effector T cells",
+        "NK cells",
+        "regulatory T cells",
+        "Tregs",
+        "myeloid-derived suppressor cells",
+        "MDSCs"
+      ],
+      "depends_on": [],
       "source_citation": "the immune system and cancer:page_5"
     },
     {
-      "id": "d4395f8c-d01c-4aa2-a8de-3333750a5f38",
-      "content": "The immune system possesses inherent mechanisms to recognize and eliminate cancerous cells.",
+      "id": "3f36871c-c6c3-4ea1-a3da-684ee5f6678c",
+      "content": "Tumor-associated macrophages often shift toward a pro-tumor phenotype that supports angiogenesis, matrix remodeling, and suppression of local immune responses.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "tumor-associated macrophages",
+        "angiogenesis",
+        "matrix remodeling"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "251e70db-2343-41f2-a216-4eb04d576231",
+      "content": "Abnormal vasculature and high interstitial pressure make it physically harder for effector T cells to infiltrate the tumor core.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "effector T cells",
+        "abnormal vasculature",
+        "high interstitial pressure"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "f7259b59-90ce-436b-bc5b-3d3ad7ef663a",
+      "content": "If proliferation is very rapid, immune cells may simply not kill fast enough to prevent net growth, especially in the setting of systemic immune compromise (e.g., age, immunosuppressive drugs, chronic infection).",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "immune cells",
+        "rapid proliferation",
+        "systemic immune compromise"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "9779ea57-04f3-43da-9215-c042f3a2dd56",
+      "content": "Cancer cells evolve like a fugitive learning to avoid cameras. They hide their ID (lower visibility), disable the \u201ckill switch\u201d T cells normally respect (checkpoints), and poison the neighborhood with signals that calm down nearby immune cells.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "cancer cells",
+        "T cells",
+        "checkpoints"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "a6e86ecd-85b8-44f4-8ff5-1a8b3027897b",
+      "content": "The immune system acts at multiple levels: preventive surveillance, targeted killing of cancer cells, and long-term control.",
       "domain": "immunology",
       "hierarchy_level": "L0_axiom",
       "entities": [
         "immune system",
-        "cancerous cells"
+        "preventive surveillance",
+        "targeted killing",
+        "long-term control"
       ],
       "depends_on": [],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "d0898d9a-cd23-4ba7-b5c7-e0a28689d9d5",
+      "content": "Preventive surveillance: clearing stressed, senescent, and precancerous cells via intrinsic checkpoints, NK cells, and phagocytes.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "intrinsic checkpoints",
+        "NK cells",
+        "phagocytes"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "a029a2ef-9281-4a78-bbfe-16d67b64b703",
+      "content": "Targeted killing of cancer cells: CTLs, NK cells, antibodies, and helper T cells coordinate to recognize neoantigens and destroy malignant cells.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "CTLs",
+        "NK cells",
+        "antibodies",
+        "helper T cells",
+        "neoantigens"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "5cd3e931-a5b1-49dd-8389-cb69f357c1d0",
+      "content": "Long-term control: maintaining some tumors in a low-level equilibrium until they either get eliminated or evolve escape mechanisms.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "tumors",
+        "low-level equilibrium",
+        "escape mechanisms"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "467f3a7e-e1e1-4617-a7c6-27715306884b",
+      "content": "Checkpoint inhibitors block inhibitory pathways like PD-1/PD-L1 or CTLA-4, \u201creleasing the brakes\u201d on T cells so they can resume attacking tumor cells.",
+      "domain": "intersection",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "checkpoint inhibitors",
+        "PD-1/PD-L1",
+        "CTLA-4",
+        "T cells"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "9d3fbc36-0c32-452a-af8c-d39ff0182c9e",
+      "content": "CAR T cells and other engineered cell therapies enhance T-cell recognition of tumor antigens.",
+      "domain": "intersection",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "CAR T cells",
+        "T cells",
+        "tumor antigens"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "859f95c3-b134-4a80-ab31-dfdf33d45869",
+      "content": "Cancer vaccines and oncolytic viruses aim to increase the visibility and immunogenicity of tumor cells and improve priming of adaptive responses.",
+      "domain": "intersection",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "cancer vaccines",
+        "oncolytic viruses",
+        "tumor cells",
+        "adaptive responses"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_5"
+    },
+    {
+      "id": "3d4ea22c-5dfd-4f2e-b6e9-4b9d71fcea4a",
+      "content": "The immune system can recognize and target cancer cells.",
+      "domain": "immunology",
+      "hierarchy_level": "L0_axiom",
+      "entities": [],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_6"
+    },
+    {
+      "id": "d732403d-b6bd-4c8c-af85-777a1409d590",
+      "content": "T cells can recognize cancer cells through the major histocompatibility complex (MHC) molecules.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "T cells",
+        "MHC molecules",
+        "cancer cells"
+      ],
+      "depends_on": [
+        "The immune system can recognize and target cancer cells."
+      ],
+      "source_citation": "the immune system and cancer:page_6"
+    },
+    {
+      "id": "70f4ac70-eb60-4715-9f81-a2b38a89ec29",
+      "content": "Cancer cells can evade the immune system by suppressing the activity of T cells.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "cancer cells",
+        "T cells"
+      ],
+      "depends_on": [
+        "T cells can recognize cancer cells through the major histocompatibility complex (MHC) molecules."
+      ],
+      "source_citation": "the immune system and cancer:page_6"
+    },
+    {
+      "id": "9dcda9ee-7c8b-4c34-b404-729e395a443a",
+      "content": "The immune system can be activated to target cancer cells through various mechanisms, including the use of checkpoint inhibitors.",
+      "domain": "immunology",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "checkpoint inhibitors"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_6"
+    },
+    {
+      "id": "ffeea25a-1735-45e1-b471-2aaac942c861",
+      "content": "Checkpoint inhibitors can release the brakes on T cells, allowing them to attack cancer cells more effectively.",
+      "domain": "immunology",
+      "hierarchy_level": "L1_mechanistic_pathway",
+      "entities": [
+        "T cells",
+        "checkpoint inhibitors",
+        "cancer cells"
+      ],
+      "depends_on": [
+        "The immune system can be activated to target cancer cells through various mechanisms, including the use of checkpoint inhibitors."
+      ],
+      "source_citation": "the immune system and cancer:page_6"
+    },
+    {
+      "id": "8c553d1c-cef7-48d2-bc4f-e565d951aeef",
+      "content": "The immune system can also target cancer cells through the activation of natural killer cells.",
+      "domain": "immunology",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "natural killer cells",
+        "cancer cells"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_6"
+    },
+    {
+      "id": "5c9f2008-031a-4376-a2ca-dd1fa1371240",
+      "content": "Cancer cells can also be targeted through the use of immunotherapies that stimulate the immune system to attack cancer cells.",
+      "domain": "immunology",
+      "hierarchy_level": "L0_axiom",
+      "entities": [
+        "immunotherapies",
+        "cancer cells"
+      ],
+      "depends_on": [],
+      "source_citation": "the immune system and cancer:page_6"
+    },
+    {
+      "id": "f35d8f10-77ab-4c9b-b1a6-e8306f4e6029",
+      "content": "The immune system can be suppressed by cancer cells through various mechanisms, including the production of immunosuppressive molecules.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L2_context_modifier",
+      "entities": [
+        "immunosuppressive molecules",
+        "cancer cells"
+      ],
+      "depends_on": [
+        "The immune system can recognize and target cancer cells."
+      ],
+      "source_citation": "the immune system and cancer:page_6"
+    },
+    {
+      "id": "01656265-57f4-4859-8511-7025d7a6a1f4",
+      "content": "Cancer cells can also evade the immune system by altering their surface proteins to avoid recognition by T cells.",
+      "domain": "cancer_pathogenesis",
+      "hierarchy_level": "L3_known_exception",
+      "entities": [
+        "cancer cells",
+        "T cells"
+      ],
+      "depends_on": [
+        "T cells can recognize cancer cells through the major histocompatibility complex (MHC) molecules."
+      ],
       "source_citation": "the immune system and cancer:page_6"
     }
   ],
   "depends_on": {
-    "ccc7421f-bced-449b-8f9d-4ffb1c430baf": [
-      "4a2d4770-2e73-4dcb-9420-ee07ebac1bc3"
+    "0fc4c089-b8ce-4faf-b7c4-6f2c9f76e42a": [
+      "ae1edbb3-c2fe-440c-9d53-a499a00353f0"
     ],
-    "f069795e-07a1-449c-9600-a400d0849461": [
-      "d7886004-c2e3-4580-a2fa-bce43e7b4c1d"
+    "0510ec29-87a9-4d51-927b-c70cb033fee3": [
+      "0fc4c089-b8ce-4faf-b7c4-6f2c9f76e42a"
     ],
-    "c91ae3a6-6130-43cc-86eb-940922212328": [
-      "50fea115-5d9c-42b2-8a1f-7f0e236dae90",
-      "57e0bfe2-e576-4cd5-aa1c-37d190229c2b"
+    "2d8ba5b7-a19c-4767-96a8-d4a89ba810b5": [
+      "65d3b6e7-6bba-4adc-b41f-86d8e1018597"
     ],
-    "64a9c1b9-56c5-47ef-b4d6-a7df5333f845": [
-      "b2e2008c-c46a-4575-95f0-5d2d79d32b5a"
+    "888d7aae-5b9a-4a15-90eb-290412ad333c": [
+      "c7948c43-2b8a-4c9d-8b3f-dce604b2f242"
     ],
-    "b2e2008c-c46a-4575-95f0-5d2d79d32b5a": [
-      "4a2d4770-2e73-4dcb-9420-ee07ebac1bc3"
+    "1426b97c-d945-4037-8437-3b6f4d657814": [
+      "511ba41e-c1aa-4ad1-ba2a-743da6d30f7b"
     ],
-    "d7886004-c2e3-4580-a2fa-bce43e7b4c1d": [
-      "64a9c1b9-56c5-47ef-b4d6-a7df5333f845",
-      "9468a6b8-b744-4db1-aa37-a9740c9b9a84"
+    "12c2cafd-4859-4e61-ae20-7015f2e3e4f6": [
+      "511ba41e-c1aa-4ad1-ba2a-743da6d30f7b"
     ],
-    "bf93f819-c580-4fbb-8d4f-e9529b462d51": [
-      "d7886004-c2e3-4580-a2fa-bce43e7b4c1d"
+    "e5de9e72-de3c-4b14-b05a-608ef7c5d7a0": [
+      "1beb3ed2-1638-4c20-a227-f748765dd162"
     ],
-    "57e0bfe2-e576-4cd5-aa1c-37d190229c2b": [
-      "d7886004-c2e3-4580-a2fa-bce43e7b4c1d",
-      "b2e2008c-c46a-4575-95f0-5d2d79d32b5a"
+    "8220a315-b484-4a91-91b4-f18dd18de6c0": [
+      "c061dd05-8c8e-492a-9971-bf8f8e889a6c"
     ],
-    "0eae62df-4561-4f4a-8e44-5d065bb9bc2b": [
-      "d4395f8c-d01c-4aa2-a8de-3333750a5f38"
+    "8a280c4f-36d1-46ba-934a-3d3975587314": [
+      "c061dd05-8c8e-492a-9971-bf8f8e889a6c"
+    ],
+    "3927550b-31fb-4ee9-a7e6-ce6aded9e6f4": [
+      "c061dd05-8c8e-492a-9971-bf8f8e889a6c"
+    ],
+    "baaae218-e7f9-4a3f-84ca-5bd20f12390e": [
+      "c061dd05-8c8e-492a-9971-bf8f8e889a6c"
+    ],
+    "92750c8f-f112-4ba8-a4cd-d03c362cf8d5": [
+      "c061dd05-8c8e-492a-9971-bf8f8e889a6c"
+    ],
+    "6a9e4b74-0829-4aed-afc4-36e1adebc23c": [
+      "c061dd05-8c8e-492a-9971-bf8f8e889a6c"
+    ],
+    "d5bacdf0-d2a4-4c98-ab1d-4e03fda49eec": [
+      "c061dd05-8c8e-492a-9971-bf8f8e889a6c"
+    ],
+    "cb1b5d90-7537-4648-ae13-cea46d31abb9": [
+      "c061dd05-8c8e-492a-9971-bf8f8e889a6c"
+    ],
+    "1e36811b-b67a-44f9-977f-0a2329953f73": [
+      "c061dd05-8c8e-492a-9971-bf8f8e889a6c"
+    ],
+    "5d1f248a-b5d8-4f7a-8cde-fa167df9006c": [
+      "c061dd05-8c8e-492a-9971-bf8f8e889a6c"
+    ],
+    "4c4064f8-ed01-4e16-b0b4-0dd9b31df5fb": [
+      "7e83cf0f-8dd6-4ef6-a3d3-ca13d6185e79"
+    ],
+    "5139f4c7-f675-4985-a5fc-df1e87b0d660": [
+      "7e83cf0f-8dd6-4ef6-a3d3-ca13d6185e79"
+    ],
+    "dd4d1f4e-69c4-42a0-b518-80852db7d88e": [
+      "bfbf975f-9670-4d2c-a6f8-1070b8831aa4"
+    ],
+    "d775c37e-6c1e-49dd-b8cd-942763327f42": [
+      "dd4d1f4e-69c4-42a0-b518-80852db7d88e"
+    ],
+    "6d7fffda-49b8-4cb2-9bc4-4f3e84b82fad": [
+      "dd4d1f4e-69c4-42a0-b518-80852db7d88e"
+    ],
+    "e7146861-983e-4b45-950c-f874d634b19b": [
+      "bfbf975f-9670-4d2c-a6f8-1070b8831aa4"
+    ],
+    "68794767-7244-4c81-952a-d2969368c7ff": [
+      "15a8b80b-dce7-4779-93e2-3e01f3526e88"
+    ],
+    "5d0c16f7-4c39-4ffa-912b-27407ee2f4b6": [
+      "68794767-7244-4c81-952a-d2969368c7ff"
+    ],
+    "719f8a4b-45e5-4fb9-8539-f867aa505210": [
+      "bffa37ba-bfbd-4dc4-b14c-18a0232f9e12"
+    ],
+    "aa0ef85f-9130-41bd-8622-c680052efbf0": [
+      "bffa37ba-bfbd-4dc4-b14c-18a0232f9e12"
+    ],
+    "071235bc-7fc3-429a-8569-3cb97a585f6d": [
+      "bffa37ba-bfbd-4dc4-b14c-18a0232f9e12"
+    ],
+    "76de21f9-364d-4aa0-a479-9aef99718f3b": [
+      "bffa37ba-bfbd-4dc4-b14c-18a0232f9e12"
+    ],
+    "166236f7-0752-4581-b6b9-05d122ea51fc": [
+      "bffa37ba-bfbd-4dc4-b14c-18a0232f9e12"
+    ],
+    "c272b825-0da8-4254-a6d7-de0491844133": [
+      "5375a366-19a6-4035-b1b5-70b9d21d4c04"
+    ],
+    "273aeae4-1620-4f41-bbb7-fada3af42d07": [
+      "5375a366-19a6-4035-b1b5-70b9d21d4c04"
+    ],
+    "6bcaa6f6-e447-45c0-929c-ab278df11b57": [
+      "5375a366-19a6-4035-b1b5-70b9d21d4c04"
+    ],
+    "bdfa0be9-beec-48d8-bc51-a0600cec4e0b": [
+      "5375a366-19a6-4035-b1b5-70b9d21d4c04"
+    ],
+    "715331b1-3385-49d9-a5b1-78b706c0c462": [
+      "5375a366-19a6-4035-b1b5-70b9d21d4c04"
+    ],
+    "cc355d6e-5945-4041-b2a9-73f93d78565c": [
+      "5375a366-19a6-4035-b1b5-70b9d21d4c04"
+    ],
+    "a9b36fc9-5805-49b1-baed-33387f8e4491": [
+      "0b05bcfd-cc51-49c2-b9f3-baa74d95ce9a"
+    ],
+    "ab0a6e66-b622-4dd8-a1f7-94e4ad82b615": [
+      "0b05bcfd-cc51-49c2-b9f3-baa74d95ce9a"
+    ],
+    "979b8572-7d55-4ee0-9c68-cfcfe3c702f9": [
+      "ab0a6e66-b622-4dd8-a1f7-94e4ad82b615"
+    ],
+    "3a353323-8230-452d-a5a7-6e723f172fd5": [
+      "0b05bcfd-cc51-49c2-b9f3-baa74d95ce9a"
+    ],
+    "b179b60c-744e-4669-8792-3eeba08b529f": [
+      "0b05bcfd-cc51-49c2-b9f3-baa74d95ce9a"
+    ],
+    "84a8262b-996f-4969-a221-edf88f50d584": [
+      "0b05bcfd-cc51-49c2-b9f3-baa74d95ce9a"
+    ],
+    "290fb1e3-60e0-4cfb-bb2d-b91a4d0eb5de": [
+      "4b003c1d-0052-4bf5-8df0-8d210638dbb9"
+    ],
+    "8add82c4-439e-48d6-a1d3-6fa6080208ed": [
+      "290fb1e3-60e0-4cfb-bb2d-b91a4d0eb5de"
+    ],
+    "0bbdf213-0157-486c-aa42-e6ea071dda94": [
+      "8add82c4-439e-48d6-a1d3-6fa6080208ed"
+    ],
+    "c0ed101f-57e8-4dbc-aacf-3b6dfe787dbd": [
+      "0bbdf213-0157-486c-aa42-e6ea071dda94"
+    ],
+    "ee2dfb57-8ec4-4ca3-9d92-3742b554e546": [
+      "c0ed101f-57e8-4dbc-aacf-3b6dfe787dbd"
+    ],
+    "a99850ee-afae-48c0-a6a9-3406debb36f0": [
+      "ee2dfb57-8ec4-4ca3-9d92-3742b554e546"
+    ],
+    "75844fd2-a9fc-4813-887e-5c24f340b220": [
+      "a99850ee-afae-48c0-a6a9-3406debb36f0"
+    ],
+    "7c383d7c-65fc-4f7b-90c9-b31025285690": [
+      "75844fd2-a9fc-4813-887e-5c24f340b220"
+    ],
+    "0d1b87db-bc3b-4328-86ad-f41c563abc83": [
+      "1251e7e9-98e1-4fdb-9bc3-84ac7444a402"
+    ],
+    "9877cdaa-8f79-48a3-bd02-70d564532688": [
+      "1251e7e9-98e1-4fdb-9bc3-84ac7444a402"
+    ],
+    "d0624fe7-ac9c-472a-b38e-c13c08b8d154": [
+      "1251e7e9-98e1-4fdb-9bc3-84ac7444a402"
+    ],
+    "d4e359a1-14a9-4395-94ba-351177bc4991": [
+      "1251e7e9-98e1-4fdb-9bc3-84ac7444a402"
+    ],
+    "431790d7-00ac-4a28-b63d-140a9989976a": [
+      "1251e7e9-98e1-4fdb-9bc3-84ac7444a402"
+    ],
+    "17da27a9-2d77-4583-8e8e-af5ec9d71fc1": [
+      "1251e7e9-98e1-4fdb-9bc3-84ac7444a402"
+    ],
+    "b9147d9d-db10-4a51-862b-4db9ed02c13b": [
+      "1251e7e9-98e1-4fdb-9bc3-84ac7444a402"
+    ],
+    "b1b2c0cb-90dd-4c3e-89b5-00c4e5975af9": [
+      "c6c348ec-6614-4ea7-81ba-8c79b3ad3d77"
+    ],
+    "e4d3d89a-5f9e-4640-af46-f094daf741d5": [
+      "912dcfd3-0eee-498a-af21-257a7e793419"
+    ],
+    "8d1f90d5-e18d-4a78-8c52-ee0b72381d05": [
+      "ea200583-e7a1-4fb8-9b47-e7c81d4ab40d"
+    ],
+    "cd00525f-b27c-4d5b-9beb-ce999c8002a1": [
+      "f691a745-dbd2-4647-be13-19065155e2fc"
+    ],
+    "287ba2a2-cd73-4bc1-a30e-7fa33bde4d79": [
+      "c6c348ec-6614-4ea7-81ba-8c79b3ad3d77"
+    ],
+    "725f4267-cfa4-4bdd-89f8-5e122cacc525": [
+      "e7a26dcf-a7b2-4930-a4e0-3166400f39fd"
+    ],
+    "1437b423-fa7e-44a6-8e6c-3589422957f0": [
+      "67108f66-0ac4-435d-b863-a5bcb2ba94e1"
+    ],
+    "5bd8c631-63ef-42d9-8b6c-049741f9ce71": [
+      "1437b423-fa7e-44a6-8e6c-3589422957f0"
+    ],
+    "e0b38974-0586-4e81-aa88-d56260bcd0f5": [
+      "5bd8c631-63ef-42d9-8b6c-049741f9ce71"
+    ],
+    "9fd6f000-c9c4-4f7a-a7bf-554abc604d78": [
+      "78e96003-e68e-4ac9-a179-fd7c704e8476"
+    ],
+    "077f54f0-1677-4159-950c-a623f5a53b24": [
+      "0283d94e-238e-43f9-823f-28a3528f1d21"
+    ],
+    "37d7ad4d-0422-4638-8a8b-9e25409bf5f6": [
+      "9092a42f-19c2-421f-a303-5ed1f8ed5e66"
+    ],
+    "17a4ce66-8eef-44a6-b9f8-95f6e03314b0": [
+      "37d7ad4d-0422-4638-8a8b-9e25409bf5f6"
+    ],
+    "40977ee7-865b-4049-b75f-2186c4b7e31a": [
+      "17a4ce66-8eef-44a6-b9f8-95f6e03314b0"
+    ],
+    "475317b1-48d1-4b5f-bb03-a134ce8e2122": [
+      "40977ee7-865b-4049-b75f-2186c4b7e31a"
+    ],
+    "7d57d380-659c-4658-9693-f87f8bee57d6": [
+      "475317b1-48d1-4b5f-bb03-a134ce8e2122"
+    ],
+    "b265643f-f800-44fd-a4c0-7559b93422d4": [
+      "7d57d380-659c-4658-9693-f87f8bee57d6"
+    ],
+    "e9168c27-1e5b-431b-b917-2475f6b31f29": [
+      "b265643f-f800-44fd-a4c0-7559b93422d4"
+    ],
+    "e98eab5c-72f3-4d33-9520-cd633d514494": [
+      "e9168c27-1e5b-431b-b917-2475f6b31f29"
+    ],
+    "1b7ddced-40c4-4512-a030-8a3a4eba00ae": [
+      "e98eab5c-72f3-4d33-9520-cd633d514494"
+    ],
+    "ad43e457-278b-4e82-9364-1dbd86b574e8": [
+      "f96e1542-efac-43cb-a505-20fb6bdcd3d0"
+    ],
+    "1c18fd55-74ce-4ed0-adc7-e63efa51328e": [
+      "ad43e457-278b-4e82-9364-1dbd86b574e8"
+    ],
+    "c277ce74-af93-48d3-a3c7-160994dc9ffd": [
+      "f96e1542-efac-43cb-a505-20fb6bdcd3d0"
+    ],
+    "2053c7b0-7508-4e3c-bdab-abeb6e63e4d8": [
+      "f96e1542-efac-43cb-a505-20fb6bdcd3d0"
+    ],
+    "b6dc1169-c5c7-47bf-80df-48b7bc9362e8": [
+      "f96e1542-efac-43cb-a505-20fb6bdcd3d0"
+    ],
+    "b6dd243b-16eb-45f4-8e7c-7e9c884eae4b": [
+      "be1ad76d-fe65-4ba8-a090-4c28b75b4acd"
+    ],
+    "15e8ff24-3e0a-4695-9545-48b07ec8b935": [
+      "be1ad76d-fe65-4ba8-a090-4c28b75b4acd"
+    ],
+    "1437cce4-632f-456d-a6ac-6cb781189f0d": [
+      "be1ad76d-fe65-4ba8-a090-4c28b75b4acd"
+    ],
+    "d732403d-b6bd-4c8c-af85-777a1409d590": [
+      "3d4ea22c-5dfd-4f2e-b6e9-4b9d71fcea4a"
+    ],
+    "70f4ac70-eb60-4715-9f81-a2b38a89ec29": [
+      "d732403d-b6bd-4c8c-af85-777a1409d590"
+    ],
+    "ffeea25a-1735-45e1-b471-2aaac942c861": [
+      "9dcda9ee-7c8b-4c34-b404-729e395a443a"
+    ],
+    "f35d8f10-77ab-4c9b-b1a6-e8306f4e6029": [
+      "3d4ea22c-5dfd-4f2e-b6e9-4b9d71fcea4a"
+    ],
+    "01656265-57f4-4859-8511-7025d7a6a1f4": [
+      "d732403d-b6bd-4c8c-af85-777a1409d590"
     ]
   },
   "dependents": {
-    "4a2d4770-2e73-4dcb-9420-ee07ebac1bc3": [
-      "ccc7421f-bced-449b-8f9d-4ffb1c430baf",
-      "b2e2008c-c46a-4575-95f0-5d2d79d32b5a"
+    "ae1edbb3-c2fe-440c-9d53-a499a00353f0": [
+      "0fc4c089-b8ce-4faf-b7c4-6f2c9f76e42a"
     ],
-    "d7886004-c2e3-4580-a2fa-bce43e7b4c1d": [
-      "f069795e-07a1-449c-9600-a400d0849461",
-      "bf93f819-c580-4fbb-8d4f-e9529b462d51",
-      "57e0bfe2-e576-4cd5-aa1c-37d190229c2b"
+    "0fc4c089-b8ce-4faf-b7c4-6f2c9f76e42a": [
+      "0510ec29-87a9-4d51-927b-c70cb033fee3"
     ],
-    "50fea115-5d9c-42b2-8a1f-7f0e236dae90": [
-      "c91ae3a6-6130-43cc-86eb-940922212328"
+    "65d3b6e7-6bba-4adc-b41f-86d8e1018597": [
+      "2d8ba5b7-a19c-4767-96a8-d4a89ba810b5"
     ],
-    "57e0bfe2-e576-4cd5-aa1c-37d190229c2b": [
-      "c91ae3a6-6130-43cc-86eb-940922212328"
+    "c7948c43-2b8a-4c9d-8b3f-dce604b2f242": [
+      "888d7aae-5b9a-4a15-90eb-290412ad333c"
     ],
-    "b2e2008c-c46a-4575-95f0-5d2d79d32b5a": [
-      "64a9c1b9-56c5-47ef-b4d6-a7df5333f845",
-      "57e0bfe2-e576-4cd5-aa1c-37d190229c2b"
+    "511ba41e-c1aa-4ad1-ba2a-743da6d30f7b": [
+      "1426b97c-d945-4037-8437-3b6f4d657814",
+      "12c2cafd-4859-4e61-ae20-7015f2e3e4f6"
     ],
-    "64a9c1b9-56c5-47ef-b4d6-a7df5333f845": [
-      "d7886004-c2e3-4580-a2fa-bce43e7b4c1d"
+    "1beb3ed2-1638-4c20-a227-f748765dd162": [
+      "e5de9e72-de3c-4b14-b05a-608ef7c5d7a0"
     ],
-    "9468a6b8-b744-4db1-aa37-a9740c9b9a84": [
-      "d7886004-c2e3-4580-a2fa-bce43e7b4c1d"
+    "c061dd05-8c8e-492a-9971-bf8f8e889a6c": [
+      "8220a315-b484-4a91-91b4-f18dd18de6c0",
+      "8a280c4f-36d1-46ba-934a-3d3975587314",
+      "3927550b-31fb-4ee9-a7e6-ce6aded9e6f4",
+      "baaae218-e7f9-4a3f-84ca-5bd20f12390e",
+      "92750c8f-f112-4ba8-a4cd-d03c362cf8d5",
+      "6a9e4b74-0829-4aed-afc4-36e1adebc23c",
+      "d5bacdf0-d2a4-4c98-ab1d-4e03fda49eec",
+      "cb1b5d90-7537-4648-ae13-cea46d31abb9",
+      "1e36811b-b67a-44f9-977f-0a2329953f73",
+      "5d1f248a-b5d8-4f7a-8cde-fa167df9006c"
     ],
-    "d4395f8c-d01c-4aa2-a8de-3333750a5f38": [
-      "0eae62df-4561-4f4a-8e44-5d065bb9bc2b"
+    "7e83cf0f-8dd6-4ef6-a3d3-ca13d6185e79": [
+      "4c4064f8-ed01-4e16-b0b4-0dd9b31df5fb",
+      "5139f4c7-f675-4985-a5fc-df1e87b0d660"
+    ],
+    "bfbf975f-9670-4d2c-a6f8-1070b8831aa4": [
+      "dd4d1f4e-69c4-42a0-b518-80852db7d88e",
+      "e7146861-983e-4b45-950c-f874d634b19b"
+    ],
+    "dd4d1f4e-69c4-42a0-b518-80852db7d88e": [
+      "d775c37e-6c1e-49dd-b8cd-942763327f42",
+      "6d7fffda-49b8-4cb2-9bc4-4f3e84b82fad"
+    ],
+    "15a8b80b-dce7-4779-93e2-3e01f3526e88": [
+      "68794767-7244-4c81-952a-d2969368c7ff"
+    ],
+    "68794767-7244-4c81-952a-d2969368c7ff": [
+      "5d0c16f7-4c39-4ffa-912b-27407ee2f4b6"
+    ],
+    "bffa37ba-bfbd-4dc4-b14c-18a0232f9e12": [
+      "719f8a4b-45e5-4fb9-8539-f867aa505210",
+      "aa0ef85f-9130-41bd-8622-c680052efbf0",
+      "071235bc-7fc3-429a-8569-3cb97a585f6d",
+      "76de21f9-364d-4aa0-a479-9aef99718f3b",
+      "166236f7-0752-4581-b6b9-05d122ea51fc"
+    ],
+    "5375a366-19a6-4035-b1b5-70b9d21d4c04": [
+      "c272b825-0da8-4254-a6d7-de0491844133",
+      "273aeae4-1620-4f41-bbb7-fada3af42d07",
+      "6bcaa6f6-e447-45c0-929c-ab278df11b57",
+      "bdfa0be9-beec-48d8-bc51-a0600cec4e0b",
+      "715331b1-3385-49d9-a5b1-78b706c0c462",
+      "cc355d6e-5945-4041-b2a9-73f93d78565c"
+    ],
+    "0b05bcfd-cc51-49c2-b9f3-baa74d95ce9a": [
+      "a9b36fc9-5805-49b1-baed-33387f8e4491",
+      "ab0a6e66-b622-4dd8-a1f7-94e4ad82b615",
+      "3a353323-8230-452d-a5a7-6e723f172fd5",
+      "b179b60c-744e-4669-8792-3eeba08b529f",
+      "84a8262b-996f-4969-a221-edf88f50d584"
+    ],
+    "ab0a6e66-b622-4dd8-a1f7-94e4ad82b615": [
+      "979b8572-7d55-4ee0-9c68-cfcfe3c702f9"
+    ],
+    "4b003c1d-0052-4bf5-8df0-8d210638dbb9": [
+      "290fb1e3-60e0-4cfb-bb2d-b91a4d0eb5de"
+    ],
+    "290fb1e3-60e0-4cfb-bb2d-b91a4d0eb5de": [
+      "8add82c4-439e-48d6-a1d3-6fa6080208ed"
+    ],
+    "8add82c4-439e-48d6-a1d3-6fa6080208ed": [
+      "0bbdf213-0157-486c-aa42-e6ea071dda94"
+    ],
+    "0bbdf213-0157-486c-aa42-e6ea071dda94": [
+      "c0ed101f-57e8-4dbc-aacf-3b6dfe787dbd"
+    ],
+    "c0ed101f-57e8-4dbc-aacf-3b6dfe787dbd": [
+      "ee2dfb57-8ec4-4ca3-9d92-3742b554e546"
+    ],
+    "ee2dfb57-8ec4-4ca3-9d92-3742b554e546": [
+      "a99850ee-afae-48c0-a6a9-3406debb36f0"
+    ],
+    "a99850ee-afae-48c0-a6a9-3406debb36f0": [
+      "75844fd2-a9fc-4813-887e-5c24f340b220"
+    ],
+    "75844fd2-a9fc-4813-887e-5c24f340b220": [
+      "7c383d7c-65fc-4f7b-90c9-b31025285690"
+    ],
+    "1251e7e9-98e1-4fdb-9bc3-84ac7444a402": [
+      "0d1b87db-bc3b-4328-86ad-f41c563abc83",
+      "9877cdaa-8f79-48a3-bd02-70d564532688",
+      "d0624fe7-ac9c-472a-b38e-c13c08b8d154",
+      "d4e359a1-14a9-4395-94ba-351177bc4991",
+      "431790d7-00ac-4a28-b63d-140a9989976a",
+      "17da27a9-2d77-4583-8e8e-af5ec9d71fc1",
+      "b9147d9d-db10-4a51-862b-4db9ed02c13b"
+    ],
+    "c6c348ec-6614-4ea7-81ba-8c79b3ad3d77": [
+      "b1b2c0cb-90dd-4c3e-89b5-00c4e5975af9",
+      "287ba2a2-cd73-4bc1-a30e-7fa33bde4d79"
+    ],
+    "912dcfd3-0eee-498a-af21-257a7e793419": [
+      "e4d3d89a-5f9e-4640-af46-f094daf741d5"
+    ],
+    "ea200583-e7a1-4fb8-9b47-e7c81d4ab40d": [
+      "8d1f90d5-e18d-4a78-8c52-ee0b72381d05"
+    ],
+    "f691a745-dbd2-4647-be13-19065155e2fc": [
+      "cd00525f-b27c-4d5b-9beb-ce999c8002a1"
+    ],
+    "e7a26dcf-a7b2-4930-a4e0-3166400f39fd": [
+      "725f4267-cfa4-4bdd-89f8-5e122cacc525"
+    ],
+    "67108f66-0ac4-435d-b863-a5bcb2ba94e1": [
+      "1437b423-fa7e-44a6-8e6c-3589422957f0"
+    ],
+    "1437b423-fa7e-44a6-8e6c-3589422957f0": [
+      "5bd8c631-63ef-42d9-8b6c-049741f9ce71"
+    ],
+    "5bd8c631-63ef-42d9-8b6c-049741f9ce71": [
+      "e0b38974-0586-4e81-aa88-d56260bcd0f5"
+    ],
+    "78e96003-e68e-4ac9-a179-fd7c704e8476": [
+      "9fd6f000-c9c4-4f7a-a7bf-554abc604d78"
+    ],
+    "0283d94e-238e-43f9-823f-28a3528f1d21": [
+      "077f54f0-1677-4159-950c-a623f5a53b24"
+    ],
+    "9092a42f-19c2-421f-a303-5ed1f8ed5e66": [
+      "37d7ad4d-0422-4638-8a8b-9e25409bf5f6"
+    ],
+    "37d7ad4d-0422-4638-8a8b-9e25409bf5f6": [
+      "17a4ce66-8eef-44a6-b9f8-95f6e03314b0"
+    ],
+    "17a4ce66-8eef-44a6-b9f8-95f6e03314b0": [
+      "40977ee7-865b-4049-b75f-2186c4b7e31a"
+    ],
+    "40977ee7-865b-4049-b75f-2186c4b7e31a": [
+      "475317b1-48d1-4b5f-bb03-a134ce8e2122"
+    ],
+    "475317b1-48d1-4b5f-bb03-a134ce8e2122": [
+      "7d57d380-659c-4658-9693-f87f8bee57d6"
+    ],
+    "7d57d380-659c-4658-9693-f87f8bee57d6": [
+      "b265643f-f800-44fd-a4c0-7559b93422d4"
+    ],
+    "b265643f-f800-44fd-a4c0-7559b93422d4": [
+      "e9168c27-1e5b-431b-b917-2475f6b31f29"
+    ],
+    "e9168c27-1e5b-431b-b917-2475f6b31f29": [
+      "e98eab5c-72f3-4d33-9520-cd633d514494"
+    ],
+    "e98eab5c-72f3-4d33-9520-cd633d514494": [
+      "1b7ddced-40c4-4512-a030-8a3a4eba00ae"
+    ],
+    "f96e1542-efac-43cb-a505-20fb6bdcd3d0": [
+      "ad43e457-278b-4e82-9364-1dbd86b574e8",
+      "c277ce74-af93-48d3-a3c7-160994dc9ffd",
+      "2053c7b0-7508-4e3c-bdab-abeb6e63e4d8",
+      "b6dc1169-c5c7-47bf-80df-48b7bc9362e8"
+    ],
+    "ad43e457-278b-4e82-9364-1dbd86b574e8": [
+      "1c18fd55-74ce-4ed0-adc7-e63efa51328e"
+    ],
+    "be1ad76d-fe65-4ba8-a090-4c28b75b4acd": [
+      "b6dd243b-16eb-45f4-8e7c-7e9c884eae4b",
+      "15e8ff24-3e0a-4695-9545-48b07ec8b935",
+      "1437cce4-632f-456d-a6ac-6cb781189f0d"
+    ],
+    "3d4ea22c-5dfd-4f2e-b6e9-4b9d71fcea4a": [
+      "d732403d-b6bd-4c8c-af85-777a1409d590",
+      "f35d8f10-77ab-4c9b-b1a6-e8306f4e6029"
+    ],
+    "d732403d-b6bd-4c8c-af85-777a1409d590": [
+      "70f4ac70-eb60-4715-9f81-a2b38a89ec29",
+      "01656265-57f4-4859-8511-7025d7a6a1f4"
+    ],
+    "9dcda9ee-7c8b-4c34-b404-729e395a443a": [
+      "ffeea25a-1735-45e1-b471-2aaac942c861"
     ]
   }
 }

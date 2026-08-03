@@ -3,6 +3,9 @@
 "use strict";
 
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
+const APP_PASSWORD = "Contrari-matrix";
+const SESSION_KEY = "rematrix_unlocked";
+const DEFAULT_KEY = "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";
 const LEVEL_LABELS = {
   "L0_axiom": "L0 - Axioms (Foundational)",
   "L1_mechanistic_pathway": "L1 - Mechanistic Pathways",
@@ -93,14 +96,14 @@ Return JSON only: {"suggested_followups": ["...", "..."]}`
 function getSettings() {
   return {
     apiKey: document.getElementById("api-key").value.trim() ||
-      (localStorage.getItem("rematrix_key") || ""),
+      (localStorage.getItem("rematrix_key") || DEFAULT_KEY),
     reasoning: document.getElementById("reasoning-model").value,
     fast: document.getElementById("fast-model").value
   };
 }
 
 function saveKey(key) {
-  if (key) localStorage.setItem("rematrix_key", key);
+  if (key && key !== DEFAULT_KEY) localStorage.setItem("rematrix_key", key);
   else localStorage.removeItem("rematrix_key");
 }
 
@@ -539,9 +542,36 @@ function hideError() {
 /* ---------- Init ---------- */
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // Restore saved key
+  // Access gate
+  const gate = document.getElementById("gate");
+  const gateForm = document.getElementById("gate-form");
+  const gatePass = document.getElementById("gate-password");
+  const gateError = document.getElementById("gate-error");
+
+  function unlock() {
+    sessionStorage.setItem(SESSION_KEY, "1");
+    gate.hidden = true;
+    document.getElementById("query-input").focus();
+  }
+
+  if (sessionStorage.getItem(SESSION_KEY) === "1") {
+    gate.hidden = true;
+  } else {
+    gateForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (gatePass.value === APP_PASSWORD) unlock();
+      else {
+        gateError.hidden = false;
+        gatePass.value = "";
+        gatePass.focus();
+      }
+    });
+    gatePass.focus();
+  }
+
+  // Restore saved key, else fall back to the bundled shared key
   const saved = localStorage.getItem("rematrix_key");
-  if (saved) document.getElementById("api-key").value = saved;
+  document.getElementById("api-key").value = saved || DEFAULT_KEY;
 
   // Toggle settings
   const toggleBtn = document.getElementById("toggle-settings");

@@ -57,6 +57,46 @@ def ingest(
 
 
 @app.command()
+def export_web(
+    index_path: Path = typer.Argument(
+        Path("data/index/index.json"),
+        help="Path to the principle index built by ingest"
+    ),
+    output: Path = typer.Option(
+        Path("docs/data/principles.json"), "--output", "-o",
+        help="Output path for the browser-friendly principles bundle"
+    ),
+):
+    """Export a browser-friendly principles bundle (no embeddings) for GitHub Pages."""
+    if not index_path.exists():
+        console.print(f"[red]✗[/red] Index not found at {index_path}")
+        console.print("Run 'python -m cancer_immunology_reasoner.cli ingest' first")
+        raise typer.Exit(1)
+
+    from cancer_immunology_reasoner.models import Principle
+    with open(index_path) as f:
+        data = json.load(f)
+
+    principles = []
+    for pid, p in data["principles"].items():
+        p.pop("embedding", None)
+        Principle(**p)
+        principles.append(p)
+
+    bundle = {
+        "principles": principles,
+        "depends_on": data["depends_on"],
+        "dependents": data["dependents"],
+    }
+
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with open(output, "w") as f:
+        json.dump(bundle, f, indent=2)
+
+    console.print(f"[green]OK[/green] Exported {len(principles)} principles to {output}")
+
+
+@app.command()
 def query(
     text: str = typer.Argument(..., help="Research query"),
     index_path: Path = typer.Option(

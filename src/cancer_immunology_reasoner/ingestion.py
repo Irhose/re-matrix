@@ -15,16 +15,19 @@ from cancer_immunology_reasoner.models import (
 
 EXTRACTION_PROMPT = """You are an expert cancer immunologist extracting structured principles from scientific text.
 
-Given a text chunk, extract ONE principle per call. If the chunk contains multiple distinct principles, extract the most central one and note others exist.
+Given a text chunk, extract EVERY distinct mechanism, pathway, or claim it contains as a separate principle. Aim for completeness: a paragraph describing 3 mechanisms should yield 3 principles. Do not merge distinct claims, do not split a single causal claim.
 
-Return JSON with exactly these fields:
+Return a JSON object with a "principles" array, each element with exactly these fields:
 {
-  "content": "The principle stated as a single, self-contained causal/mechanistic claim",
-  "domain": "immunology | cancer_pathogenesis | intersection",
-  "hierarchy_level": "L0_axiom | L1_mechanistic_pathway | L2_context_modifier | L3_known_exception",
-  "entities": ["cell_type1", "molecule1", "pathway1", "receptor1", ...],
-  "depends_on": ["description of principle this builds on", ...],
-  "source_citation": "document_name:page_or_section"
+  "principles": [
+    {
+      "content": "The principle stated as a single, self-contained causal/mechanistic claim",
+      "domain": "immunology | cancer_pathogenesis | intersection",
+      "hierarchy_level": "L0_axiom | L1_mechanistic_pathway | L2_context_modifier | L3_known_exception",
+      "entities": ["cell_type1", "molecule1", "pathway1", "receptor1", ...],
+      "depends_on": ["description of principle this builds on", ...]
+    }
+  ]
 }
 
 Hierarchy level guide:
@@ -46,8 +49,8 @@ class PrincipleExtractor:
         self.model = get_fast_model()
         self.json_mode = supports_json_mode()
 
-    def extract_from_chunk(self, chunk_text: str, source_citation: str) -> Optional[Principle]:
-        """Extract a single principle from a text chunk."""
+    def extract_from_chunk(self, chunk_text: str, source_citation: str) -> list[Principle]:
+        """Extract every principle from a text chunk."""
         try:
             kwargs = dict(
                 model=self.model,
@@ -61,59 +64,66 @@ class PrincipleExtractor:
                 kwargs["response_format"] = {"type": "json_object"}
             response = self.client.chat.completions.create(**kwargs)
             content = response.choices[0].message.content
-            # Extract JSON from content if not in json mode
             if self.json_mode:
                 data = json.loads(content)
             else:
                 data = json.loads(self._extract_json(content))
 
-            if not isinstance(data, dict) or "content" not in data:
-                logger.warning(f"Invalid extraction result: {str(data)[:100]}")
-                return None
+            if isinstance(data, dict) and "principles" in data:
+                raw_list = data["principles"]
+            elif isinstance(data, list):
+                raw_list = data
+            else:
+                raw_list = [data]
 
-            # Validate hierarchy level
-            try:
-                hierarchy_level = HierarchyLevel(data["hierarchy_level"])
-            except ValueError:
-                logger.warning(f"Invalid hierarchy level: {data['hierarchy_level']}, defaulting to L1")
-                hierarchy_level = HierarchyLevel.L1_MECHANISTIC_PATHWAY
-
-            # Validate domain
-            try:
-                raw_domain = data["domain"]
-                # Handle cases where LLM returns "immunology | cancer_pathogenesis" etc.
-                if "|" in raw_domain:
-                    # Pick the first valid domain
-                    for part in raw_domain.split("|"):
-                        part = part.strip()
-                        try:
-                            domain = Domain(part)
-                            break
-                        except ValueError:
-                            continue
-                    else:
-                        domain = Domain.INTERSECTION
-                elif raw_domain in ("both", "all"):
-                    domain = Domain.INTERSECTION
-                else:
-                    domain = Domain(raw_domain)
-            except ValueError:
-                logger.warning(f"Invalid domain: {data['domain']}, defaulting to intersection")
-                domain = Domain.INTERSECTION
-
-            principle = Principle(
-                content=data["content"].strip(),
-                domain=domain,
-                hierarchy_level=hierarchy_level,
-                entities=data.get("entities", []),
-                depends_on=data.get("depends_on", []),
-                source_citation=source_citation
-            )
-            return principle
+            principles = []
+            for raw in raw_list:
+                if not isinstance(raw, dict) or "content" not in raw:
+                    continue
+                p = self._build_principle(raw, source_citation)
+                if p:
+                    principles.append(p)
+            return principles
 
         except Exception as e:
             logger.error(f"Extraction failed for {source_citation}: {e}")
+            return []
+
+    @staticmethod
+    def _build_principle(raw: dict, source_citation: str) -> Optional[Principle]:
+        content = str(raw.get("content", "")).strip()
+        if not content:
             return None
+
+        hierarchy_level = HierarchyLevel.parse(raw.get("hierarchy_level", ""))
+        domain = Domain.INTERSECTION
+        try:
+            raw_domain = raw.get("domain", "")
+            if "|" in str(raw_domain):
+                for part in str(raw_domain).split("|"):
+                    part = part.strip()
+                    try:
+                        domain = Domain(part)
+                        break
+                    except ValueError:
+                        continue
+                else:
+                    domain = Domain.INTERSECTION
+            elif str(raw_domain).lower() in ("both", "all"):
+                domain = Domain.INTERSECTION
+            else:
+                domain = Domain(raw_domain)
+        except ValueError:
+            domain = Domain.INTERSECTION
+
+        return Principle(
+            content=content,
+            domain=domain,
+            hierarchy_level=hierarchy_level,
+            entities=[str(e) for e in raw.get("entities", [])],
+            depends_on=[str(d) for d in raw.get("depends_on", [])],
+            source_citation=source_citation
+        )
 
     @staticmethod
     def _extract_json(text: str) -> str:
@@ -183,8 +193,8 @@ def ingest_corpus(corpus_dir: Path, output_path: Path) -> list[Principle]:
             chunks = chunk_by_conceptual_unit(page_text, pdf_path.stem, page_num)
             
             for chunk_text, citation in chunks:
-                principle = extractor.extract_from_chunk(chunk_text, citation)
-                if principle:
+                extracted = extractor.extract_from_chunk(chunk_text, citation)
+                for principle in extracted:
                     all_principles.append(principle)
                     logger.debug(f"Extracted: {principle.content[:80]}... [{principle.hierarchy_level.value}]")
     

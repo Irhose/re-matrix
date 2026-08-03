@@ -7,6 +7,20 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <div id="gate" class="gate">
+    <div class="gate-box">
+      <span class="brand-mark">&#10033;</span>
+      <h1>Re-Matrix</h1>
+      <p class="tagline">Restricted access &mdash; password required</p>
+      <form id="gate-form" class="gate-form">
+        <input type="password" id="gate-password" placeholder="Access password" autocomplete="off">
+        <button class="btn btn-primary" type="submit">Unlock</button>
+      </form>
+      <p id="gate-error" class="status-text err" hidden>Incorrect password. Try again.</p>
+      <p class="gate-note">This app runs the reasoning pipeline in your browser against the Groq API using a shared key bundled with the app. You can also supply your own key under Settings.</p>
+    </div>
+  </div>
+
   <header class="site-header">
     <div class="container">
       <div class="brand">
@@ -31,7 +45,7 @@
         <label>
           <span>Groq API Key</span>
           <input type="password" id="api-key" placeholder="gsk_..." autocomplete="off">
-          <small>Stored only in your browser (localStorage). Never sent to any server except api.groq.com. Get one at console.groq.com.</small>
+          <small>Uses a shared key bundled with the app. Enter your own key here to use your own quota (stored only in your browser).</small>
         </label>
         <label>
           <span>Reasoning model</span>
