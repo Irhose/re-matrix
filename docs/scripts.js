@@ -8,6 +8,7 @@ const PROXY_URL = "https://re-matrix-proxy.irhoseapori.workers.dev";
 const APP_PASSWORD_HINT = "Contrari-matrix";
 const SESSION_KEY = "rematrix_unlocked";
 const PASS_KEY = "rematrix_pass";
+const DATA_VERSION = "3"; // bump to force browsers off a cached corpus
 const LEVEL_LABELS = {
   "L0_axiom": "L0 - Axioms (Foundational)",
   "L1_mechanistic_pathway": "L1 - Mechanistic Pathways",
@@ -137,7 +138,7 @@ async function groqChat(model, system, user, temperature = 0.2) {
 
 async function loadCorpus() {
   if (CORPUS) return CORPUS;
-  const resp = await fetch("data/principles.json");
+  const resp = await fetch("data/principles.json?v=" + DATA_VERSION);
   CORPUS = await resp.json();
   CORPUS.idx = indexById();
   return CORPUS;
