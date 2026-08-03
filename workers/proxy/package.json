@@ -1,0 +1,14 @@
+{
+  "name": "re-matrix-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker proxy for Re-Matrix (holds Groq key server-side)",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "login": "wrangler login"
+  },
+  "devDependencies": {
+    "wrangler": "^4.118.0"
+  }
+}

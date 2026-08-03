@@ -1,11 +1,13 @@
-/* Re-Matrix browser pipeline: Stages 2-6 run client-side against the Groq API. */
+/* Re-Matrix browser pipeline: Stages 2-6 run client-side against the Groq API via the
+   Cloudflare Worker proxy (key is stored server-side; see workers/proxy). */
 
 "use strict";
 
-const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
-const APP_PASSWORD = "Contrari-matrix";
+// Point this at your deployed worker.
+const PROXY_URL = "https://re-matrix-proxy.irhoseapori.workers.dev";
+const APP_PASSWORD_HINT = "Contrari-matrix";
 const SESSION_KEY = "rematrix_unlocked";
-const DEFAULT_KEY = "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";
+const PASS_KEY = "rematrix_pass";
 const LEVEL_LABELS = {
   "L0_axiom": "L0 - Axioms (Foundational)",
   "L1_mechanistic_pathway": "L1 - Mechanistic Pathways",
@@ -95,26 +97,23 @@ Return JSON only: {"suggested_followups": ["...", "..."]}`
 
 function getSettings() {
   return {
-    apiKey: document.getElementById("api-key").value.trim() ||
-      (localStorage.getItem("rematrix_key") || DEFAULT_KEY),
     reasoning: document.getElementById("reasoning-model").value,
     fast: document.getElementById("fast-model").value
   };
 }
 
-function saveKey(key) {
-  if (key && key !== DEFAULT_KEY) localStorage.setItem("rematrix_key", key);
-  else localStorage.removeItem("rematrix_key");
+function getAccessPassword() {
+  return sessionStorage.getItem(PASS_KEY) || "";
 }
 
 async function groqChat(model, system, user, temperature = 0.2) {
-  const settings = getSettings();
-  if (!settings.apiKey) throw new Error("Please enter a Groq API key first.");
-  const resp = await fetch(GROQ_URL, {
+  const password = getAccessPassword();
+  if (!password) throw new Error("Access password missing. Reload the page and unlock the app.");
+  const resp = await fetch(PROXY_URL + "/chat", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Authorization": "Bearer " + settings.apiKey
+      "X-App-Password": password
     },
     body: JSON.stringify({
       model,
@@ -128,7 +127,7 @@ async function groqChat(model, system, user, temperature = 0.2) {
   });
   if (!resp.ok) {
     const body = await resp.text();
-    throw new Error("Groq API error " + resp.status + ": " + body.slice(0, 400));
+    throw new Error("Proxy error " + resp.status + ": " + body.slice(0, 400));
   }
   const data = await resp.json();
   return JSON.parse(data.choices[0].message.content);
@@ -308,12 +307,10 @@ Flagged assumptions: ${(assumptions || []).join("; ")}`;
 async function runPipeline() {
   const query = document.getElementById("query-input").value.trim();
   if (!query) return;
-  const settings = getSettings();
-  if (!settings.apiKey) {
-    showError("Please enter a Groq API key in the settings panel first.");
+  if (!getAccessPassword()) {
+    showError("Access password missing. Reload the page and unlock the app.");
     return;
   }
-  saveKey(settings.apiKey);
 
   const steps = [
     "Stage 2: Query understanding",
@@ -550,16 +547,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function unlock() {
     sessionStorage.setItem(SESSION_KEY, "1");
+    sessionStorage.setItem(PASS_KEY, gatePass.value.trim());
     gate.hidden = true;
     document.getElementById("query-input").focus();
   }
 
-  if (sessionStorage.getItem(SESSION_KEY) === "1") {
+  if (sessionStorage.getItem(SESSION_KEY) === "1" && getAccessPassword()) {
     gate.hidden = true;
   } else {
     gateForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      if (gatePass.value === APP_PASSWORD) unlock();
+      if (gatePass.value.trim() === APP_PASSWORD_HINT) unlock();
       else {
         gateError.hidden = false;
         gatePass.value = "";
@@ -568,10 +566,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
     gatePass.focus();
   }
-
-  // Restore saved key, else fall back to the bundled shared key
-  const saved = localStorage.getItem("rematrix_key");
-  document.getElementById("api-key").value = saved || DEFAULT_KEY;
 
   // Toggle settings
   const toggleBtn = document.getElementById("toggle-settings");
@@ -582,16 +576,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     toggleBtn.textContent = hidden ? "Hide" : "Show";
   });
 
-  // Test key
+  // Test connection (via proxy)
   document.getElementById("test-key").addEventListener("click", async () => {
     const status = document.getElementById("key-status");
     status.className = "status-text";
     status.textContent = "Testing...";
     try {
-      await groqChat(getSettings().fast, "Reply with OK as a JSON object.", "ping", 0);
+      const password = getAccessPassword();
+      const resp = await fetch(PROXY_URL + "/ping", {
+        method: "GET",
+        headers: { "X-App-Password": password }
+      });
+      if (!resp.ok) throw new Error("Proxy rejected: " + resp.status);
+      const data = await resp.json();
       status.className = "status-text ok";
-      status.textContent = "Key works";
-      saveKey(getSettings().apiKey);
+      status.textContent = data.ok ? "Connection OK" : "Proxy error";
     } catch (e) {
       status.className = "status-text err";
       status.textContent = "Failed: " + (e.message || "error");

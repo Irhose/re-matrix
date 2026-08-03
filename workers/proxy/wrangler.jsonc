@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "re-matrix-proxy",
+  "main": "src/index.js",
+  "compatibility_date": "2025-01-01",
+  "kv_namespaces": [
+    {
+      "binding": "REMATRIX_KV",
+      "id": "12f99f03d35441febe8aff7c896a5a09"
+    }
+  ],
+  "vars": {
+    "RATE_LIMIT_PER_HOUR": "50",
+    "RATE_LIMIT_GLOBAL_DAY": "1000"
+  }
+}

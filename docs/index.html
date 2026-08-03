@@ -17,7 +17,7 @@
         <button class="btn btn-primary" type="submit">Unlock</button>
       </form>
       <p id="gate-error" class="status-text err" hidden>Incorrect password. Try again.</p>
-      <p class="gate-note">This app runs the reasoning pipeline in your browser against the Groq API using a shared key bundled with the app. You can also supply your own key under Settings.</p>
+      <p class="gate-note">The reasoning pipeline runs in your browser. Requests are proxied through a Cloudflare Worker that holds the API key server-side and rate-limits usage.</p>
     </div>
   </div>
 
@@ -43,11 +43,6 @@
       </div>
       <div class="settings-grid" id="settings-body">
         <label>
-          <span>Groq API Key</span>
-          <input type="password" id="api-key" placeholder="gsk_..." autocomplete="off">
-          <small>Uses a shared key bundled with the app. Enter your own key here to use your own quota (stored only in your browser).</small>
-        </label>
-        <label>
           <span>Reasoning model</span>
           <select id="reasoning-model">
             <option value="llama-3.3-70b-versatile">Llama 3.3 70B (recommended)</option>
@@ -62,7 +57,7 @@
           </select>
         </label>
         <div class="settings-actions">
-          <button class="btn btn-sm" id="test-key">Test Key</button>
+          <button class="btn btn-sm" id="test-key">Test Connection</button>
           <span id="key-status" class="status-text"></span>
         </div>
       </div>

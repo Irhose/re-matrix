@@ -14,9 +14,15 @@ Causal reasoning for cancer immunology. Re-Matrix grounds every prediction in a 
 
 The web app is password-gated. Enter the access password to unlock it.
 
-The app ships with a shared Groq API key bundled into the client, so visitors can use the app without their own key. Users may also supply their own key under **Settings**; their key is stored only in the browser (localStorage) and sent only to `api.groq.com`.
+Browser requests go through a **Cloudflare Worker proxy** (`workers/proxy`) that holds the Groq API key **server-side** and enforces:
 
-> **Security caveat — read this.** The bundled key is committed in `docs/scripts.js` (a client-side app), so anyone who views the page source can extract it and spend your Groq quota. The password gate protects the UI, not the key. Monitor quota/usage at console.groq.com and rotate the key if abuse appears. To disable the shared key, remove the `DEFAULT_KEY` line in `docs/scripts.js`.
+- the app password (checked server-side, not in the client),
+- per-IP rate limiting (default 50 calls/hour per visitor),
+- a global daily cap (default 1000 calls/day).
+
+This means the key never reaches the browser, so scraping the page source or bypassing the gate cannot burn the Groq quota beyond the caps.
+
+> **Rotation note.** An earlier version of the app bundled the key in `docs/scripts.js`, and that key is now in the public git history. **Rotate your Groq key** at console.groq.com and put the new key in the Worker secret (`wrangler secret put GROQ_API_KEY`).
 
 ## Web app (GitHub Pages)
 
@@ -24,8 +30,10 @@ No build step. The pipeline runs in the browser:
 
 1. Open https://irhose.github.io/re-matrix/
 2. Enter the access password.
-3. Optionally override the bundled key / choose models under **API Configuration**.
+3. Choose models under **API Configuration** (optional).
 4. Enter a research query and run the pipeline.
+
+The app calls `PROXY_URL` defined at the top of `docs/scripts.js` — set it to your deployed Worker URL (see `workers/proxy/README.md`).
 
 `docs/` is served directly by GitHub Pages. Rebuild the corpus bundle with:
 
@@ -64,6 +72,22 @@ python -m cancer_immunology_reasoner.cli query "..." --save data/conversations/q
 python -m cancer_immunology_reasoner.cli refine_conversation data/conversations/q1.json "Add context: tumor is heavily hypoxic" --step 3
 ```
 
+## Deploying the API proxy (Cloudflare Worker)
+
+The web app requires a deployed proxy. See **`workers/proxy/README.md`** for the full steps:
+
+```bash
+cd workers/proxy
+npm install -D wrangler
+npx wrangler login                                   # one-time browser auth
+npx wrangler kv namespace create REMATRIX_KV         # paste ID into wrangler.jsonc
+npx wrangler secret put GROQ_API_KEY                 # new (rotated) key
+npx wrangler secret put APP_PASSWORD                 # app password
+npx wrangler deploy
+```
+
+Then set `PROXY_URL` in `docs/scripts.js` to the deployed URL and push.
+
 ## Project layout
 
 ```
@@ -72,6 +96,7 @@ data/
   index/         # principles.json, index.json (dependency graph), index.faiss
   conversations/ # saved reasoning state
 docs/            # GitHub Pages web app (index.html, styles.css, scripts.js, data/principles.json)
+workers/proxy/   # Cloudflare Worker: key server-side + password check + rate limits
 src/cancer_immunology_reasoner/
   cli.py              # typer CLI (ingest / query / refine / export-web)
   ingestion.py        # Stage 1: PDF → chunks → principles (multi-principle extraction)
