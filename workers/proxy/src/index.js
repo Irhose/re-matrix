@@ -86,21 +86,38 @@ async function handleChat(request, env) {
     return json({ error: `Model not allowed: ${body.model}` }, 400);
   }
 
-  // Forward to Groq
+  // Forward to Groq, retrying transient rate limits (429) with backoff.
   const payload = {
     model: body.model,
     temperature: typeof body.temperature === "number" ? body.temperature : 0.2,
     response_format: body.response_format || { type: "json_object" },
     messages: body.messages
   };
-  const resp = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer " + env.GROQ_API_KEY
-    },
-    body: JSON.stringify(payload)
-  });
+  const MAX_ATTEMPTS = 4;
+  let resp = null;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    resp = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + env.GROQ_API_KEY
+      },
+      body: JSON.stringify(payload)
+    });
+    if (resp.status !== 429 || attempt === MAX_ATTEMPTS) break;
+
+    // Parse the suggested wait from Groq's message ("try again in 1.38s")
+    // or the Retry-After header; fall back to exponential backoff.
+    let wait = 1000 * Math.pow(2, attempt - 1);
+    try {
+      const j = await resp.json();
+      const m = (j && j.error && j.error.message) || "";
+      const ms = m.match(/try again in ([\d.]+)s/i);
+      if (ms) wait = Math.ceil(parseFloat(ms[1]) * 1000);
+    } catch { /* keep backoff */ }
+    wait = Math.max(wait, 1000);
+    await new Promise((r) => setTimeout(r, wait));
+  }
   const text = await resp.text();
   return new Response(text, { status: resp.status, headers: { "Content-Type": "application/json", ...CORS_HEADERS } });
 }
